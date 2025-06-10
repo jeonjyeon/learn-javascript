@@ -41,3 +41,45 @@
 // let dark-impact = '다크 임팩트' [❌]
 // 예약어(예: if, for, while, function, ...) 안됨.
 // let return = '회귀' [❌]
+
+// 값 할당하지 않고 변수 선언하기
+// let test; // 기본값: undefined
+// // let test = undefined; (암묵적)
+// console.log('test = ', test); // undefined
+
+//선언된 변수에 값 할당
+// test = 27;
+// console.log('test = ', test); // undefined -> 27
+
+// ------------------------------
+// let 변수 vs var 변수
+// ------------------------------
+
+// 블록 스코프(block scope)
+// {
+//   var myName; // var는 	함수 스코프(function scope)
+//   console.log(1, myName);
+
+//   myName = 'apple';
+//   console.log(2, myName);
+// }
+
+// myName = 'pineapple';
+// console.log(3, myName);
+
+// {
+//   let myName2; // let은 블록 스코프(function scope)
+//   console.log(1, myName2);
+
+//   myName2 = 'apple';
+//   console.log(2, myName2);
+// }
+
+// myName2 = 'pineapple'; // ReferenceError
+// console.log(3, myName2);
+
+// ----------------------------------------
+// let 변수 vs const 변수(상수, constant)
+// ----------------------------------------
+// - 변수: 시간의 흐름에 따라 값이 변경됨
+// - 상수: 처음 선언 시, 할당된 값이 이후 변경되지 않음
