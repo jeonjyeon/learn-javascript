@@ -58,3 +58,14 @@
 // JavaScript 숫자(정수)의 안전 범위 표현
 // console.log(Number.MIN_SAFE_INTEGER)
 // console.log(Number.MAX_SAFE_INTEGER)
+
+
+
+// ------------------------------
+// 3. Boolean
+// ------------------------------
+true    // boolean
+'true'  // string
+
+false   // boolean
+'false' // string
