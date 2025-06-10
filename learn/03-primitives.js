@@ -33,3 +33,28 @@
 
 // 데이터 타입이 문자인 경우 (결과: 11)
 // console.log('1' + '1')
+
+// ------------------------------
+// 2. Number
+// ------------------------------
+
+// 1,000,000,000
+// console.log(1000)
+// console.log(10.87)
+// console.log(1_000_000_000)
+
+// 산술 연산
+// 덧셈 (add): +
+// 뺄셈 (add): -
+// 곱셈 (multiply): *
+// 나눗셈 (divide): /
+// 나머지 (modules): %
+// console.log(12345 + 67890)
+// console.log(12345 - 67890)
+// console.log(12345 * 67890)
+// console.log(12345 / 67890)
+// console.log(12345 % 6)
+
+// JavaScript 숫자(정수)의 안전 범위 표현
+// console.log(Number.MIN_SAFE_INTEGER)
+// console.log(Number.MAX_SAFE_INTEGER)
