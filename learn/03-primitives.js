@@ -5,7 +5,7 @@
 // 4. Null (널)
 // 5. Undefined (언디파인디드)
 // 6. Symbol (심볼)
-// 7. Bigint (빅인트)
+// 7. BigInt (빅인트)
 
 // ------------------------------
 // 1. String
@@ -79,5 +79,13 @@
 // ------------------------------
 // 5. Undefined
 // ------------------------------
-undefined
-console.log(undefined)
+// undefined
+// console.log(undefined)
+
+
+// ------------------------------
+// 6. Symbol
+// ------------------------------
+console.log(Symbol())
+console.log(Symbol(2025))
+console.log(Symbol('고유식별자'))
