@@ -73,5 +73,11 @@
 // ------------------------------
 // 4. Null
 // ------------------------------
-null
-console.log(null)
+// null
+// console.log(null)
+
+// ------------------------------
+// 5. Undefined
+// ------------------------------
+undefined
+console.log(undefined)
