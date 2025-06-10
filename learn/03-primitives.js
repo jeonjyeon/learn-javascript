@@ -60,12 +60,18 @@
 // console.log(Number.MAX_SAFE_INTEGER)
 
 
-
 // ------------------------------
 // 3. Boolean
 // ------------------------------
-true    // boolean
-'true'  // string
+// true    // boolean
+// 'true'  // string
 
-false   // boolean
-'false' // string
+// false   // boolean
+// 'false' // string
+
+
+// ------------------------------
+// 4. Null
+// ------------------------------
+null
+console.log(null)
