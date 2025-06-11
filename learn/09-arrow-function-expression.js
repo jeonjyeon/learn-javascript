@@ -27,7 +27,8 @@
 // 화살표 함수 표현식 (Arrow Function Expression)
 // --------------------------------------------------
 
-// 1. 매개변수의 갯수
+// 1. 매개변수의 개수
+
 //    0개
 // let readABook = () => {
 //   console.log('책을 읽다.');
@@ -37,6 +38,7 @@
 // let readABook = _ => {
 //   console.log('책을 읽다.');
 // };
+
 
 //    1개
 // let readABook = (bookName) => {
@@ -49,6 +51,7 @@
 //   console.log('"' + bookName + '"을 읽다.');
 // };
 // readABook('오만과 편견')
+
 
 //    2개 이상인 경우, 소괄호는 생략하지 않는다.
 // let readABook = (bookName, day) => {
