@@ -124,3 +124,49 @@ function remToPx(rem) {
   return px + 'px';
 }
 console.log(remToPx(1.5));
+
+function pizzaPrice(price, count) {
+  let total = price * count;
+  return '총 금액은 ' + total + '원 입니다.';
+}
+console.log(pizzaPrice(15000, 2));
+
+function parkingPrice(hour) {
+  let total = 1_000 * hour;
+  return '주차 요금은 ' + total + '원 입니다.';
+}
+console.log(parkingPrice(6));
+
+function isEvenNumber(num) {
+  let result = num % 2;
+  // if (result == 0) {
+  //   return true;
+  // } else {
+  //   return false;
+  // }
+  return result == 0;
+}
+console.log(isEvenNumber(126));
+console.log(isEvenNumber(331));
+
+function birthdayMessage(personName) {
+  return personName + '!! 생일 축하해🎇';
+}
+console.log(birthdayMessage('전지연'));
+
+const year = 365;
+function remainingDays(days) {
+  return year - days + '일 남았습니다.';
+}
+console.log(remainingDays(120));
+
+function priceIncludingTax(price) {
+  let tax = price / 10;
+  return '부가세 포함 상품 가격은 ' + (price + tax) + '원 입니다.';
+}
+console.log(priceIncludingTax(5_000));
+
+function isAdult(age) {
+  return age >= 19;
+}
+console.log(isAdult(18));
