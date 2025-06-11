@@ -62,7 +62,7 @@
 //    return undefined (암묵적 반환, 기본 반환)
 //    return 값 (명시적 반환)Add commentMore actions
 
-const ROOT_FONT_SIZE = 16
+// const ROOT_FONT_SIZE = 16
 
 // 함수 선언
 // function px2rem(pxValue) {
@@ -90,15 +90,15 @@ const ROOT_FONT_SIZE = 16
 //   return remValue
 // }
 
-let pxToRem = function (pxValue) {
-  return pxValue / ROOT_FONT_SIZE + 'rem'
-}
+// let pxToRem = function (pxValue) {
+//   return pxValue / ROOT_FONT_SIZE + 'rem'
+// }
 
-// let px2rem = pxValue => pxValue / ROOT_FONT_SIZE + 'rem'
-let px2rem = pxValue => 
-    pxValue / ROOT_FONT_SIZE + 'rem'
+// // let px2rem = pxValue => pxValue / ROOT_FONT_SIZE + 'rem'
+// let px2rem = pxValue => 
+//     pxValue / ROOT_FONT_SIZE + 'rem'
 
-console.log(px2rem(28))
+// console.log(px2rem(28))
 
 
 
@@ -136,3 +136,52 @@ let getStyles2 = _ => ({
 })
 
 console.log(getStyles())
+
+
+// --------------------------------------------
+// 실습
+// --------------------------------------------
+
+// 1. 매개변수 없이, 값 10을 반환하는 ten 함수를 화살표 함수 표현식으로 작성해보세요.
+const ten = () => 10
+
+// 2. 하나의 매개변수를 받는 logger 함수를 화살표 함수 표현식으로 작성해보세요. 
+// (괄호 사용 또는 사용 안함)
+
+const logger = (message) => '로그 메시지: ' + message
+console.log(logger('화살표 함수 표현식은 매우 유용해요!'))
+
+// 3. pxToRem 함수를 명시적, 암묵적으로 값을 반환하도록 모든 경우를 화살표 함수 표현식으로 작성하세요
+// 명시적
+const ROOT_FONT_SIZE = 16
+const pxToRem = (px) =>{
+  return px / ROOT_FONT_SIZE + 'rem'
+}
+// 암묵적
+const px2Rem = (px) => px / ROOT_FONT_SIZE + 'rem'
+
+console.log('명시적: ' + pxToRem(18), '암묵적: ' + px2Rem(18))
+
+
+// 4.percentage 함수를 명시적, 암묵적으로 값을 반환하도록 모든 경우를 화살표 함수 표현식으로 작성하세요.
+// 명시적
+const percentage = (x, y) =>{
+  return x/y*100 + '%'
+}
+// 암묵적
+const percentage2 = (x, y) => x/y*100 + '%'
+
+console.log('명시적: ' + percentage(360, 1280), '암묵적: ' + percentage2(360, 1280))
+
+
+
+// 왜 함수를 화살표 함수 표현식으로 사용할 때
+// let이 아닌, const를 사용했을까?
+// - 실수로 다른 값으로 재할당하는 것을 방지하기 위해
+// - 이 함수가 "변하지 않아야 할 값"임을 명확하게 보여주기 위해
+
+let thisIsAFunction = () => {
+  console.log('이것은 함수 입니다.')
+}
+thisIsAFunction = {}
+thisIsAFunction()
