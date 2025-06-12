@@ -148,3 +148,67 @@ const body2 = {
 
 console.log(body2['display']);
 console.log(body2['flex-flow']);
+
+// --------------------------------------------------------------------------Add commentMore actions
+// 📌 함수의 타입은?
+// --------------------------------------------------------------------------
+//    JavaScript 함수는 객체이다.
+//    객체는 값이다. 함수는 객체다. 그러니까 함수는 값이다.
+// --------------------------------------------------------------------------
+
+function likeLion() {
+  console.log('우리는 멋사 14기!');
+}
+
+likeLion.order = 14;
+
+console.log(likeLion.order);
+
+delete likeLion.order;
+
+console.log(likeLion.order);
+
+// "함수는 값이다."
+// - 함수는 값이므로 함수에 인수로 전달 가능하다. (일급 객체, 일급 함수)
+{
+  greeting(sayHello, '🌈 자바스크립트'); // '안녕! 🌈 자바스크립트'
+
+  function sayHello() {
+    return '안녕! ';
+  }
+
+  function greeting(helloMessage /* = sayHello */, name) {
+    // const helloMessage = sayHello = function () { ... }
+
+    console.log(helloMessage() + name);
+  }
+}
+
+// - 함수는 값이므로 함수가 값으로 반환할 수 있다. (고차 함수)
+{
+  const greeting = sayHello();
+  greeting('🌈 자바스크립트'); // '안녕! 🌈 자바스크립트'
+
+  function sayHello() {
+    return (name) => {
+      console.log('안녕! ' + name);
+    };
+  }
+}
+
+{
+  const galaxyNoteBook = {
+    deviceName: '갤럭시 노트북',
+    getDeviceName: function () {
+      return galaxyNoteBook.deviceName;
+    },
+  };
+
+  // console.log(galaxyNoteBook.getDeviceName) 이렇게 하면 함수가 나오고
+  // 함수(컴퓨터 메모리 상에 기억: 주소) 참조
+  console.log(galaxyNoteBook.getDeviceName);
+
+  // console.log(galaxyNoteBook.getDeviceName()) 이렇게 했을때 value가 나오는데 왜 그런건가요?
+  // 함수(컴퓨터 메모리 상에 기억: 주소) 실행 (소괄호()는 함수이름이 실행 연산자를 만나면 함수가 실행 => 값 반환)
+  console.log(galaxyNoteBook.getDeviceName());
+}
