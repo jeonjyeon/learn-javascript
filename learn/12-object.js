@@ -94,6 +94,24 @@ delete h1Kebab['font-style'];
 
 console.log(h1Kebab);
 
+// 객체의 속성(Object's Properties)Add commentMore actions
+// h1Camel.fontSize
+// h1Camel.fontWeight
+
+// 객체의 메서드(Object's Methods : 객체의 속성 중 함수(동사)형태의 것을 특별히 메서드라고 부른다.)
+h1Camel.getFontSize = function () {
+  return h1Camel.fontSize;
+};
+
+console.log(h1Camel.getFontSize());
+
+labtop.getOS = function () {
+  return labtop.프로세서;
+};
+
+console.log(labtop.getOS());
+console.log(labtop['getOS']());
+
 // CSS 코드를 JavaScript의 객체로 만들어 보기
 const body = {
   display: 'flex',
@@ -102,6 +120,9 @@ const body = {
   alignItems: 'center',
   afunction: function () {
     console.log('hi');
+  },
+  afunction2: function (message) {
+    console.log(message);
   },
 };
 
@@ -112,6 +133,7 @@ console.log(body.flexFlow);
 console.log(body.justifyContent);
 console.log(body.alignItems);
 console.log(body.afunction());
+console.log(body.afunction2('안녕하세요'));
 
 const body2 = {
   display: 'flex',
@@ -122,3 +144,17 @@ const body2 = {
 
 console.log(body2['display']);
 console.log(body2['flex-flow']);
+
+// --------------------------------------------------------------------------
+// 📌 함수의 타입?
+//    JavaScript 함수는 객체이다.
+//    객체는 값이다. 함수는 객체다. 그러니까 함수는 값이다.
+// --------------------------------------------------------------------------
+
+function likeLion() {
+  console.log('나는 멋사 14기');
+}
+likeLion.order = 14;
+console.log(likeLion.order); // 14
+delete likeLion.order;
+console.log(likeLion.order); // undefined
