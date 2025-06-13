@@ -20,25 +20,33 @@
     <!-- <script type="module" src="./learn/02-module.js"></script> -->
   </head>
   <body>
-    <h1 lang="ko">자바스크립트</h1>
-    <ul>
-      <li>
-        <a href="">JavaScript</a>
-      </li>
-      <li>
-        <a href="">HTML</a>
-      </li>
-      <li>
-        <a href="">CSS</a>
-      </li>
+    <div id="app">
+      <h1 lang="ko">자바스크립트</h1>
+      <ul>
+        <li>
+          <a href="">JavaScript</a>
+        </li>
+        <li>
+          <a href="">HTML</a>
+        </li>
+        <li>
+          <a href="">CSS</a>
+        </li>
+      </ul>
+      <form>
+        <div>
+          <label for="useremail">이메일</label>
+          <input type="email" name="emailname" id="useremail" placeholder="user@company.io" />
+        </div>
+        <button type="submit">보내기</button>
+      </form>
+    </div>
+
+    <ul id="exorcist-characters">
+      <li class="character yo-han" data-type="hero">박요한</li>
+      <li class="character master-choi" data-type="master">최강림</li>
+      <li class="character villain-ghost" data-type="villain">악령</li>
     </ul>
-    <form>
-      <div>
-        <label for="useremail">이메일</label>
-        <input type="email" name="emailname" id="useremail" placeholder="user@company.io" />
-      </div>
-      <button type="submit">보내기</button>
-    </form>
-    <script src="./learn/24-document-object-model.js"></script>
+    <script src="./learn/25-practice-document-object-model.js"></script>
   </body>
 </html>
