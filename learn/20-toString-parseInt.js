@@ -42,19 +42,45 @@ console.log(toHexadecimal(255) === 'ff');
 // --------------------------------------------------------------------------
 // - 단위(예: px, rem, cm, mm 등) 제거
 // - 2 또는 16진수 문자열을 10진수로 변경
+// radix = 진수
 // --------------------------------------------------------------------------
 
 // 단위 제거
-// ...
+console.log(parseInt('24px'));
+console.log(parseInt('240mm'));
+console.log(parseFloat('1.625rem'));
 
 // 단위 제거 함수 작성
-// ...
+function deleteUnit(text) {
+  return parseFloat(text, 10);
+}
+console.log(deleteUnit('16px'));
+console.log(deleteUnit('1.625rem'));
 
+// 10진수로 변경하기 위해서는 parseInt를 써야한다.
 // 2진수 문자열 -> 10진수 변경
-// ...
+console.log(parseInt('10', 2));
+console.log(parseInt('100', 2));
 
 // 16진수 문자열 -> 10진수 변경
-// ...
+console.log(parseInt('00', 16));
+console.log(parseInt('80', 16));
+console.log(parseInt('a0', 16));
+console.log(parseInt('a1', 16));
+console.log(parseInt('ae', 16));
+console.log(parseInt('ff', 16));
 
 // 16진수 문자열을 10진수로 변경하는 함수 작성
-// ...
+// 1. 함수 기능 고민
+// 2. 적절한 함수 이름 작성
+// 3. 함수 기능 구현
+// 4. 반환값 설계 (10진수 문자열)
+// 5. 테스트 (함수 호출 정상 작동 검사)
+function hexToDec(hexValue) {
+  return parseInt(hexValue, '16');
+}
+
+// 테스트 코드
+console.log(hexToDec('00') === 0);
+console.log(hexToDec('80') === 128);
+console.log(hexToDec('ff') === 255);
