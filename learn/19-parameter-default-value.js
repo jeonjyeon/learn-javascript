@@ -15,14 +15,16 @@ function getMoney(price /* 필수 */, unit /* 옵션 */) {
 
   // 조건문 소괄호 안에서 조건이 평가 (Truthy or Falsey)
   // 평가 이후, 부정(NOT, !) 연산자로 평가 반전
-  if (!unit) {
-    unit = '원';
-  }
+  //   if (!unit) {
+  //     unit = '원';
+  //   }
+  //   if (unit === '달러') {
+  //     return '$' + price;
+  //   }
+  //   return price + unit;
 
-  if (unit === '달러') {
-    return '$' + price;
-  }
-
+  if (!unit) unit = '원';
+  if (unit === '달러') return '$' + price;
   return price + unit;
 }
 
