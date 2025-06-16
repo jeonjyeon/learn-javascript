@@ -1,6 +1,8 @@
-# Created by https://www.toptal.com/developers/gitignore/api/node,windows,osx,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=node,windows,osx,visualstudiocode
-.DS_Store
+### Custom ###
+01-off-canvas
+02-modal-dialog
+practice
+
 ### Node ###
 # Logs
 logs
@@ -214,5 +216,3 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-
-# End of https://www.toptal.com/developers/gitignore/api/node,windows,osx,visualstudiocode

@@ -1,3 +1,0 @@
-@layer theme, demo;
-@import "./modules/_theme.css" layer(theme);
-@import "./modules/_demo.css" layer(demo);
