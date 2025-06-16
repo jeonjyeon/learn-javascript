@@ -1,13 +1,53 @@
 const exorcists = document.getElementById('exorcist-characters');
 
 const choi = exorcists.querySelector('.master-choi');
-// console.dir(choi.classList)
+const villain = exorcists.querySelector('[data-type="villain"]');
+
+// Element.classList -> DOMTokenList { add, remove, item, value, replace, toggle}
+
+// item
+// let firstClassName = choi.classList.item(0);
+// let lastClassName = choi.classList.item(1);
+// console.log(firstClassName);
+// console.log(lastClassName);
+
+// 토글 전
+console.log('1. choi.classList.value의 아이템 갯수 =', choi.classList.length);
+
+// 클래스 이름 토글
+choi.classList.toggle('active');
+
+// 토글 후
+console.log('2. choi.classList.value의 아이템 갯수 =', choi.classList.length);
+
+// contains를 이용한 조건문
+// let activeClassName = 'active';
+// if (!choi.classList.contains(activeClassName)) {
+//   choi.classList.add(activeClassName);
+// } else {
+//   choi.classList.remove(activeClassName);
+// }
+// console.log(choi.className);
 
 // 오늘날 주로 사용하는 방법(NEW)
+// {
+//   choi.classList.add('active');
+//   // console.dir(choi.classList.value)
+//   choi.classList.remove('master-choi');
+// }
+
 {
-  choi.classList.add('active');
-  // console.dir(choi.classList.value)
-  choi.classList.remove('master-choi');
+  // villain-ghost 항목 요소를 찾아서 클래스 이름을 여럿 추가한 뒤,
+  // 다시 클래스 이름을 여럿 제거해봅니다.
+  // villain.classList.add('alpha beta'); // syntax error!
+  villain.classList.add('alpha', 'beta');
+  console.log(villain.className);
+  villain.classList.remove('beta');
+  console.log(villain.className);
+
+  // 이전 시대의 방법
+  // villain.className += 'a b c d';
+  // console.log(villain);
 }
 
 // 이전 시대의 방법 (OLD)
