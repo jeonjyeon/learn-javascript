@@ -21,6 +21,11 @@ body {
   padding: 6px 12px;
   background-color: var(--blue-900);
   color: var(--blue-100);
+
+  &.is-active {
+    background-color: var(--blue-100);
+    color: var(--blue-800);
+  }
 }
 
 h1 {
