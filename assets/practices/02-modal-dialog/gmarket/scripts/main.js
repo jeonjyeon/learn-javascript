@@ -2,6 +2,10 @@ window.addEventListener('DOMContentLoaded', () => {
   // console.log('DOM Contents loaded')Add commentMore actions
   const dialog = document.querySelector('.dialog');
   console.log(dialog); // HTMLFigureElement
+  const closeButton = document.querySelector('.button');
+  closeButton.addEventListener('click', () => {
+    document.body.classList.add('dialog-is-hidden');
+  });
 });
 
 // 코드 실행 시점 관련 -> load, DOMContentLoaded 이벤트 (변경)
