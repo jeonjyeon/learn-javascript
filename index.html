@@ -146,7 +146,7 @@
       });
     </script> -->
 
-    <br />
+    <!-- <br />
     <div type="group" style="display: flex; flex-direction: column; row-gap: 20px">
       <button type="button" class="clickable button-1">클릭 가능한 요소 1</button>
       <button type="button" class="clickable button-2">클릭 가능한 요소 2</button>
@@ -154,10 +154,28 @@
       <button type="button" class="clickable button-4">클릭 가능한 요소 4</button>
       <button type="button" class="clickable button-5">클릭 가능한 요소 5</button>
     </div>
-    <br />
+    <br /> -->
     <!-- <button type="button" class="clickable" onclick="handler()">레거시 이벤트 모델을 사용하는 요소</button>
     <script src="./assets/scripts/learn/27-event-listening.js"></script> -->
 
-    <script src="./assets/scripts/learn/29-custom-callback.js"></script>
+    <!-- <script src="./assets/scripts/learn/29-custom-callback.js"></script> -->
+
+    <a class="button" href="#">버튼처럼 보이는 링크</a>
+    <script>
+      // 오류 나는 코드
+      // const button = document.querySelector('button');
+
+      // button.addEventListener('click' e => {
+      //   console.log('버튼 클릭!'))
+      // })
+
+      // 해결
+      // 이유:
+      const button = document.querySelector('.button');
+
+      button.addEventListener('click', (e) => {
+        console.log('버튼 클릭!');
+      });
+    </script>
   </body>
 </html>
