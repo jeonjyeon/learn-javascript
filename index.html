@@ -18,12 +18,13 @@
     <!-- <script src="./assets/scripts/learn/learn/01-hello.js"></script> -->
     <!-- JavaScript 모듈(Modules)로 호출: "이 파일은 모듈 파일이다"라고 브라우저마다 -->
     <!-- <script type="module" src="./assets/scripts/learn/02-module.js"></script> -->
-    <script>
+    <!-- <script>
       // 이벤트 핸들러
       function handler() {
         console.log('toggle triggered');
       }
-    </script>
+    </script> -->
+    <script src="./assets/scripts/utils/events.js"></script>
   </head>
   <body>
     <h1 lang="en">JavaScript</h1>
@@ -142,8 +143,13 @@
     </script> -->
 
     <br />
-    <button type="button" class="clickable button-1">클릭 가능한 요소 1</button>
-    <button type="button" class="clickable button-2">클릭 가능한 요소 2</button>
+    <div type="group" style="display: flex; flex-direction: column; row-gap: 20px">
+      <button type="button" class="clickable button-1">클릭 가능한 요소 1</button>
+      <button type="button" class="clickable button-2">클릭 가능한 요소 2</button>
+      <button type="button" class="clickable button-3">클릭 가능한 요소 3</button>
+      <button type="button" class="clickable button-4">클릭 가능한 요소 4</button>
+      <button type="button" class="clickable button-5">클릭 가능한 요소 5</button>
+    </div>
     <br />
     <!-- <button type="button" class="clickable" onclick="handler()">레거시 이벤트 모델을 사용하는 요소</button>
     <script src="./assets/scripts/learn/27-event-listening.js"></script> -->
