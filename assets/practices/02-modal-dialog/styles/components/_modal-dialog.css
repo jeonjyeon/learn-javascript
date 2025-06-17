@@ -14,6 +14,18 @@
   padding: 1em;
   background-color: var(--modal-overlay-background-color);
 
+  /* 기본: 숨김 상태 */
+  position: fixed;
+  inset: 0;
+  opacity: 0;
+  z-index: -1;
+
+  /* body 또는 상위 요소에 `.modal-is-open` 클래스가 붙었을 때 보이게 */
+  .modal-is-open & {
+    opacity: 1;
+    z-index: 10;
+  }
+
   .modal-dialog {
     display: grid;
     place-items: center;
@@ -25,7 +37,7 @@
     min-inline-size: 50vmin;
     min-block-size: 50vmin;
   }
-  
+
   .modal-close-button {
     .modal-dialog:hover & {
       opacity: 1;
@@ -41,7 +53,7 @@
     border: 2px solid var(--dialog-close-button-background-color);
     background: var(--dialog-close-button-background-color);
     color: var(--dialog-close-button-color);
-    
+
     &:hover,
     &:active,
     &:focus {
@@ -51,7 +63,3 @@
     }
   }
 }
-
-
-
-
