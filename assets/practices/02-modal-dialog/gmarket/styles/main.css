@@ -19,6 +19,11 @@
     z-index: -1;
   }
 
+  &.dialog-close {
+    z-index: -1;
+    opacity: 0;
+  }
+
   > img {
     margin-block-start: 60px;
   }

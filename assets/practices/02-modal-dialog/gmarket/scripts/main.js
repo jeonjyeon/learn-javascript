@@ -4,7 +4,8 @@ window.addEventListener('DOMContentLoaded', () => {
   console.log(dialog); // HTMLFigureElement
   const closeButton = document.querySelector('.button');
   closeButton.addEventListener('click', () => {
-    document.body.classList.add('dialog-is-hidden');
+    // document.body.classList.add('dialog-is-hidden');
+    dialog.classList.add('dialog-close');
   });
 });
 
