@@ -51,3 +51,17 @@ const hasItem = (array, value) => array.indexOf(value) > -1;
 
 console.log(hasItem(fruitBasket, '패션')); // 기대값: false
 console.log(hasItem(fruitBasket, '오렌지')); // 기대값: true
+
+// indexOf() 메서드 대신, includes() 메서드 활용Add commentMore actions
+// console.log(fruitBasket.includes('워터멜론'))
+// console.log(fruitBasket.includes('수박'))
+
+// 객체 타입(함수, 배열, 객체)은 indexOf()로 판별 가능하지 않음
+const 멋사14기_수강생 = [
+  { 이름: '전지연' }, // 0
+  { 이름: '레이' }, // 1
+  { 이름: '전젼' }, // 2
+];
+
+// console.log(멋사14기_수강생.indexOf({ 이름: '전지연' })); // -1
+console.log(멋사14기_수강생.findIndex((수강생) => 수강생.이름 === '전지연')); // 0
