@@ -203,7 +203,7 @@ let wantToDraw = true;
   }
 };
 
-(() => {
+() => {
   // let i = 0
 
   // for(변수선언값할당; 변수가유효한지비교; 변수변경) {
@@ -211,4 +211,54 @@ let wantToDraw = true;
     console.count('for 문', i);
     // ++i
   }
+};
+
+() => {
+  const numbers = [11, 22, 33, 44, 55, 66];
+
+  // numbers를 순환(루프)하되, 33인 값(인덱스) 순서에서 반복문 멈춰라
+  for (let i = 0; i < numbers.length; i = i + 1) {
+    // const number = numbers.at(i)
+    const number = numbers[i];
+
+    if (number === 33) {
+      // 반복문 내부에서 break를 만나면 반복문이 바로 중단됨
+      break;
+    }
+
+    console.log(number);
+  }
+};
+
+() => {
+  const numbers = [11, 22, 33, 44, 55, 66, 77, 88, 99];
+
+  for (let i = 0, l = numbers.length; i < l; i = i + 1) {
+    const number = numbers[i];
+    console.log(number);
+  }
+
+  // let i = 0,
+  //     l = numbers.length
+
+  // for (; i < l;) {
+  //   const number = numbers[i]
+  //   console.log(number)
+  //   i = i + 1
+  // }
+};
+
+(() => {
+  const numbers = [11, 22, 33, 44, 55, 66, 77, 88, 99];
+
+  for (let i = 0, number; (number = numbers[i]); i = i + 1) {
+    console.log(number);
+  }
+
+  // let i = 0, number // undefined
+
+  // for (; (number = numbers[i]);) {
+  //   console.log(number)
+  //   i = i + 1
+  // }
 })();
