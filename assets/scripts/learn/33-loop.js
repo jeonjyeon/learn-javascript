@@ -90,7 +90,7 @@ let wantToDraw = true;
 // 흐름 제어 (continue, break)
 
 // ( () => { ... } )() IIFE(즉시 실행 함수): 전역 스코프 오염 방지 및 지역 스코프 생성용
-(() => {
+() => {
   let drawCount = 20;
   let i = 0;
 
@@ -123,4 +123,52 @@ let wantToDraw = true;
     draw(i); // i = 1, 2, 3, 4
   }
   console.log('마지막 i 값 =', i); // i = 5
-})();
+};
+
+// ------------------------------------------------------------
+// do ... while 반복문
+// 구문 실행 먼저 하고 조건 평가 (최소 1회 실행됨)
+
+() => {
+  let condition = false;
+
+  // do...while 문
+  // 조건이 거짓이어도 1번은 반드시 실행
+  do {
+    console.log('do...while');
+  } while (condition);
+
+  // while 문
+  // 조건이 거짓이면 1번도 실행 안함
+  while (condition) {
+    console.log('while');
+  }
+};
+
+// --------------------------------------------------------------------------
+// 사용자 입력 검증 (do...while vs while)
+// "1부터 10까지 숫자를 입력하세요"
+
+// do...while 문 사용 예시
+() => {
+  let userInput;
+
+  do {
+    userInput = parseInt(prompt('1부터 10까지 숫자를 입력하세요'), 10);
+    if (Number.isNaN(userInput) || userInput < 1 || userInput > 10) console.error('입력 값이 1부터 10까지 숫자여야 합니다.');
+  } while (Number.isNaN(userInput) || userInput < 1 || userInput > 10);
+
+  console.log('사용자가 입력한 값은 ' + userInput + '입니다.');
+};
+
+// while 문 사용 예시
+() => {
+  let userInput = parseInt(prompt('1부터 10까지 숫자를 입력하세요'), 10);
+
+  while (Number.isNaN(userInput) || userInput < 1 || userInput > 10) {
+    console.error('입력 값이 1부터 10까지 숫자여야 합니다.');
+    userInput = parseInt(prompt('1부터 10까지 숫자를 입력하세요'), 10);
+  }
+
+  console.log('사용자가 입력한 값은 ' + userInput + '입니다.');
+};
