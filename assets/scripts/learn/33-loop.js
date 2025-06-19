@@ -15,7 +15,7 @@ const draw = () => {
 // draw();
 // draw();
 
-// const numbers = [100, 99, 98, 97]Add commentMore actions
+// const numbers = [100, 99, 98, 97]
 // console.log(numbers)
 
 let wantToDraw = true;
@@ -98,16 +98,29 @@ let wantToDraw = true;
     console.log('도화지에 그림을 그린 횟수 = ' + n);
   };
 
-  while (i++ < drawCount /* 1 ~ 10 -> continue -> 16 ~ 19 */) {
-    // i += 1
-    // ++i
-    // i++
+  // continue
+  // while (i++ < drawCount /* 1 ~ 10 -> continue -> 16 ~ 19 */) {
+  //   // i += 1
+  //   // ++i
+  //   // i++
 
-    // i = 10
-    if (i > 10 && i <= 15) {
-      continue;
+  //   // i = 10
+  //   if (i > 10 && i <= 15) {
+  //     continue;
+  //   }
+
+  //   draw(i);
+  // }
+
+  // break
+  while (i++ < drawCount /* 0 < 20 */) {
+    // i = 1, 2, 3, 4, 5
+
+    if (i === 5) {
+      // i = 5
+      break; // 반복문 종료
     }
-
-    draw(i);
+    draw(i); // i = 1, 2, 3, 4
   }
+  console.log('마지막 i 값 =', i); // i = 5
 })();
