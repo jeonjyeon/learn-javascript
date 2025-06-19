@@ -263,7 +263,7 @@ let wantToDraw = true;
   // }
 };
 
-(() => {
+() => {
   const fruitBasket = ['체리망고', '토마토', '스트로베리', '워터멜론', '체리'];
 
   // for문을 사용해 과일바구니 내부의 과일 이름을 콘솔 패널에 출력
@@ -288,4 +288,25 @@ let wantToDraw = true;
     console.log(student.이름);
   }
   console.timeEnd('역순환');
+};
+
+(() => {
+  const webTech = {
+    html: 'hyper text markup language',
+    css: 'cascading style sheet',
+    javascript: 'programming language',
+  };
+
+  // 객체 전용 순환
+  // for ... in 문
+  for (const key in webTech) {
+    const value = webTech[key];
+    console.table({
+      key: key,
+      value: value,
+    });
+  }
+
+  // for 문 (객체에서 활용하지 않음)
+  // for ... of 문 (객체에서 활용하지 않음)
 })();
