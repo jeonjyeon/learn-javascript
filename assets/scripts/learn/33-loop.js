@@ -172,3 +172,43 @@ let wantToDraw = true;
 
   console.log('사용자가 입력한 값은 ' + userInput + '입니다.');
 };
+
+// --------------------------------------------------------------------------
+// for 문
+// while 문 vs. for 문
+
+// while 문 예시
+() => {
+  let i = 0;
+
+  while (i < 10) {
+    console.count('while 문');
+    ++i;
+  }
+};
+
+// for 문 예시
+() => {
+  for (let i = 0; i < 10; i = i + 1) {
+    console.count('for 문');
+  }
+};
+
+() => {
+  let i = 0;
+
+  for (; i < 10; ) {
+    console.count('for 문');
+    ++i;
+  }
+};
+
+(() => {
+  // let i = 0
+
+  // for(변수선언값할당; 변수가유효한지비교; 변수변경) {
+  for (let i = 0; i < 10; ++i) {
+    console.count('for 문', i);
+    // ++i
+  }
+})();
