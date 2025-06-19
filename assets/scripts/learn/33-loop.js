@@ -67,7 +67,7 @@ let wantToDraw = true;
 //   }
 // }
 
-// ------------------------------
+// ------------------------------------------------------------
 // 사용자 입력 검증 (while)
 // '1부터 10까지 숫자를 입력하세요'
 
@@ -78,10 +78,36 @@ let wantToDraw = true;
 // let userInput = prompt('1부터 10까지 숫자를 입력하세요.'); // prompt로 값을 받으면 string 타입이다.
 // userInput = Number.parseInt(userInput, 10);
 
-let userInput = Number.parseInt(prompt('1부터 10까지 숫자를 입력하세요.'), 10); // prompt로 값을 받으면 string 타입이다.
-// console.log('입력한 값: ', userInput, ', 값의 타입: ', typeof userInput);
+// let userInput = Number.parseInt(prompt('1부터 10까지 숫자를 입력하세요.'), 10); // prompt로 값을 받으면 string 타입이다.
+// // console.log('입력한 값: ', userInput, ', 값의 타입: ', typeof userInput);
 
-while (Number.isNaN(userInput) || userInput < 1 || userInput > 10) {
-  console.error('입력 값이 1부터 10 사이의 숫자여야 합니다.');
-  userInput = Number.parseInt(prompt('1부터 10까지 숫자를 입력하세요.'), 10);
-}
+// while (Number.isNaN(userInput) || userInput < 1 || userInput > 10) {
+//   console.error('입력 값이 1부터 10 사이의 숫자여야 합니다.');
+//   userInput = Number.parseInt(prompt('1부터 10까지 숫자를 입력하세요.'), 10);
+// }
+
+// ------------------------------------------------------------
+// 흐름 제어 (continue, break)
+
+// ( () => { ... } )() IIFE(즉시 실행 함수): 전역 스코프 오염 방지 및 지역 스코프 생성용
+(() => {
+  let drawCount = 20;
+  let i = 0;
+
+  const draw = (n) => {
+    console.log('도화지에 그림을 그린 횟수 = ' + n);
+  };
+
+  while (i++ < drawCount /* 1 ~ 10 -> continue -> 16 ~ 19 */) {
+    // i += 1
+    // ++i
+    // i++
+
+    // i = 10
+    if (i > 10 && i <= 15) {
+      continue;
+    }
+
+    draw(i);
+  }
+})();
