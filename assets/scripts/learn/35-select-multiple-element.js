@@ -100,7 +100,7 @@
 };
 
 // HTMLCollection vs. NodeList
-(() => {
+() => {
   console.group('DOM 업데이트 전');
   // HTMLCollection (Live)
   const paras = document.getElementsByTagName('p');
@@ -122,4 +122,53 @@
   console.log('HTMLCollection(라이브 콜렉션: 살아있는 집합) =', paraClasses.length);
   console.log('NodeList(스태틱 콜렉션: 고정된 집합)', paragraphs.length);
   console.groupEnd();
-})();
+};
+
+// --------------------------------------------------
+// 실습
+// 'querySelectorAll()' 메서드를 사용해 연습해보세요.
+
+// 1. 좋은 사람(Good Guy)을 모두 선택하세요.
+const goodGuy = document.querySelectorAll('[data-type="good-guy"]');
+
+// 2. 좋은 사람(Good Guy) 모두에게 'excellent' 클래스 이름을 추가하세요.
+// goodGuy.forEach((guy) => {
+//   guy.classList.add('excellent');
+// });
+
+for (const g of goodGuy) {
+  g.classList.add('excellent');
+}
+console.log(goodGuy);
+
+// 3. 빌런(Villain)을 모두 선택하세요.
+const villain = document.querySelectorAll('[data-type="villain"]');
+console.log(villain);
+
+// 4. 빌런 모두에게 'naughty' 클래스 이름을 추가하세요.
+// villain.forEach((v) => {
+//   v.classList.add('naughty');
+// });
+
+// for (const v of villain) {
+//   v.classList.add('naughty');
+// }
+
+let i = 0,
+  l = villain.length;
+
+for (; i < l; ++i) {
+  // const v = villain.item(i);
+  const v = villain[i];
+  v.classList.add('naughty');
+}
+
+console.log(villain);
+
+// 5. 모든 캐릭터(Character)를 선택하세요.
+const characters = document.querySelectorAll('.character');
+
+// 6. 모든 캐릭터에 'star-wars' 클래스 이름을 추가하세요.
+characters.forEach((c) => {
+  c.classList.add('star-wars');
+});
