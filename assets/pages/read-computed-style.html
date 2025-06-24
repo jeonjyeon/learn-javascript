@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="../images/ecmascript-logo.png" />
+    <title>계산된 스타일 읽기</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 100px;
+        background-color: #3498db;
+        color: white;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="box">스타일을 읽어보세요!</p>
+    <script>
+      {
+        document.addEventListener('DOMContentLoaded', () => {
+          const box = document.querySelector('.box');
+          const boxComputedStyle = getComputedStyle(box);
+          console.log('계산된 스타일 읽기 (너비): ', boxComputedStyle.getPropertyValue('width'));
+          console.log('계산된 스타일 읽기 (높이): ', boxComputedStyle.getPropertyValue('height'));
+          console.log('계산된 스타일 읽기 (배경색): ', boxComputedStyle.getPropertyValue('background-color'));
+          console.log('계산된 스타일 읽기 (글자색): ', boxComputedStyle.getPropertyValue('color'));
+          console.log('계산된 스타일 읽기 (글자 크기): ', boxComputedStyle.getPropertyValue('font-size'));
+        });
+      }
+    </script>
+  </body>
+</html>
