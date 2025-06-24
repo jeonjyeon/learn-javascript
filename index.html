@@ -25,7 +25,15 @@
         background-color: maroon;
       }
       h1 {
+        position: relative;
         color: tan;
+
+        &::after {
+          content: ' ❤️';
+          position: absolute;
+          top: -20px;
+          right: -50px;
+        }
       }
     </style>
   </head>
