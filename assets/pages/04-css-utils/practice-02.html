@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>글자, 배경 색상 조절</title>
+    <style>
+      .text {
+        padding: 1rem;
+        font-size: 1.5rem;
+        text-align: center;
+        color: #000000;
+        background-color: #ffffff;
+      }
+
+      .controls {
+        margin-top: 2rem;
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+        align-items: center;
+      }
+
+      label {
+        font-size: 14px;
+      }
+
+      input[type='color'] {
+        width: 60px;
+        height: 30px;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+      }
+    </style>
+    <script src="/assets/scripts/utils/css.js"></script>
+  </head>
+  <body>
+    <div class="controls">
+      <label for="textColor">
+        글자색
+        <input type="color" id="textColor" value="#000000" />
+      </label>
+
+      <label for="backgroundColor">
+        배경색
+        <input type="color" id="backgroundColor" value="#ffffff" />
+      </label>
+    </div>
+    <p class="text">이 텍스트의 글자 크기를 조절해 보세요!</p>
+
+    <script>
+      {
+        // 글자 및 배경 색상 조절
+        // 레인지(range) 인풋 값이 변경되면 `.text` 요소의 글자 크기가 변경되도록 구현합니다.
+        const textElement = document.querySelector('.text');
+        const textColorInput = document.getElementById('textColor');
+        const backgroundColorInput = document.getElementById('backgroundColor');
+
+        // textColorInput input 이벤트 리스너 등록
+        textColorInput.addEventListener('input', () => {
+          // const textColor = textColorInput.value;
+          // DOM 업데이트
+          // 텍스트 요소의 글자 색상 변경
+          // textElement.style.color = textColor;
+          // textElement.style.setProperty('color', textColor);
+          css(textElement, 'color', textColorInput.value);
+        });
+
+        // backgroundColorInput input 이벤트 리스너 등록
+        backgroundColorInput.addEventListener('input', () => {
+          const backgroundColor = backgroundColorInput.value;
+          // DOM 업데이트
+          // 텍스트 요소의 배경 색상 변경
+          // textElement.style.backgroundColor = backgroundColor;
+          // textElement.style.setProperty('background-color', backgroundColor);
+          css(textElement, 'background-color', backgroundColor);
+        });
+      }
+    </script>
+  </body>
+</html>
