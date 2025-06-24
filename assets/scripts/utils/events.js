@@ -1,3 +1,10 @@
+/* eslint-disable no-unused-vars */
+
+// element.addEventListener(eventType, listener, ?options)
+function on(element, type, listener) {
+  element.addEventListener(type, listener);
+}
+
 function click(element, listener) {
   element.addEventListener('click', listener);
 }
