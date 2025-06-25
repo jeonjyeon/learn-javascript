@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>요소 위치와 크기 측정</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 100px;
+        background-color: #74b9ff;
+        margin: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <button id="measureBtn">위치/크기 확인</button>
+
+    <script>
+      {
+        // 버튼 클릭 시, 요소의 위치와 크기 확인
+        // 버튼을 클릭하면, .box 요소의 위치 및 크기 정보를 콘솔에 출력합니다.
+        const box = document.querySelector('.box');
+        const measureBtn = document.getElementById('measureBtn');
+
+        measureBtn.addEventListener('click', () => {
+          const DOMRect = box.getBoundingClientRect();
+          console.log('요소의 위치와 크기 정보:', DOMRect);
+          console.log('요소의 너비:', DOMRect.width);
+          console.log('요소의 높이:', DOMRect.height);
+          console.log('요소의 왼쪽 위치:', DOMRect.left);
+          console.log('요소의 오른쪽 위치:', DOMRect.right);
+          console.log('요소의 위쪽 위치:', DOMRect.top);
+          console.log('요소의 아래쪽 위치:', DOMRect.bottom);
+        });
+      }
+    </script>
+  </body>
+</html>
