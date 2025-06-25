@@ -27,6 +27,7 @@
       body {
         background-color: lightyellow;
       }
+
       h1 {
         position: relative;
         color: tan;
@@ -34,9 +35,15 @@
         &::after {
           content: ' ❤️';
           position: absolute;
-          /* top: -20px;
-          right: -50px; */
         }
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+        color: #4a3f35;
+        padding-bottom: 0.4rem;
+        border-bottom: 2px solid #ddd;
+        text-align: center;
       }
     </style>
   </head>
@@ -44,47 +51,51 @@
     <h1 lang="en" style="color: lightyellow">JavaScript</h1> -->
   <body>
     <h1 lang="en">JavaScript</h1>
-    <ul>
-      <li><a href="./practices/01-off-canvas/index.html">01-off-canvas</a></li>
-      <li><a href="./practices/02-modal-dialog/index.html">02-modal-dialog</a></li>
-      <li><a href="./practices/03-accordion/index.html">03-accordion</a></li>
-      <li><a href="./assets/pages/01-node-element/about-node.html">about-node</a></li>
-      <li><a href="./assets/pages/02-js-hooks/js-hook1.html">요소 선택 실습</a></li>
-      <li><a href="./assets/pages/02-js-hooks/js-hook2.html">JS Hook 실습</a></li>
-      <li><a href="./assets/pages/03-element-styles/css-element-style.html">버튼 클릭 시, 요소 스타일 설정 실습</a></li>
-      <li><a href="./assets/pages/03-element-styles/css-custom-property.html">버튼 클릭 시, 사용자 정의 CSS 속성 설정 실습</a></li>
-      <li><a href="./assets/pages/03-element-styles/read-inline-style.html">인라인 스타일 읽기</a></li>
-      <li><a href="./assets/pages/03-element-styles/read-computed-style.html">계산된 스타일 읽기</a></li>
-      <li><a href="./assets/pages/03-element-styles/read-pseudo-element-style.html">가상요소 스타일 읽기</a></li>
-      <li><a href="./assets/pages/04-css-utils/practice-01.html">글자 크기 조정</a></li>
-      <li><a href="./assets/pages/04-css-utils/practice-02.html">글자 및 배경 색상 조절</a></li>
-      <li><a href="./assets/pages/05-attributes/practice.html">속성 설정, 읽기, 제거</a></li>
-      <li><a href="./assets/pages/06-element-rect-info/practice-01.html">버튼 클릭 시, 요소의 위치와 크기 확인</a></li>
-      <li><a href="./assets/pages/06-element-rect-info/practice-02.html">마우스 오버 시, 요소 화면에 위치 표시</a></li>
-    </ul>
-
-    <section hidden class="life-tips">
-      <h2>생활 상식</h2>
-      <p class="para">배터리를 오래 쓰고 싶다면 100% 충전보다는 80~90%에서 사용을 멈추는 것이 좋습니다.</p>
-      <p class="para">전자레인지에 금속 용기를 넣으면 화재 위험이 있으니 절대 사용하지 마세요.</p>
-      <p class="para">흰 셔츠의 얼룩은 세탁 전에 식초나 베이킹소다로 미리 처리하면 잘 지워집니다.</p>
+    <section>
+      <h2 class="section-title">실습</h2>
+      <ul class="practice-list">
+        <li><a href="./practices/01-off-canvas/index.html">01-off-canvas</a></li>
+        <li><a href="./practices/02-modal-dialog/index.html">02-modal-dialog</a></li>
+        <li><a href="./practices/03-accordion/index.html">03-accordion</a></li>
+        <li><a href="./assets/pages/01-node-element/about-node.html">about-node</a></li>
+        <li><a href="./assets/pages/02-js-hooks/js-hook1.html">요소 선택 실습</a></li>
+        <li><a href="./assets/pages/02-js-hooks/js-hook2.html">JS Hook 실습</a></li>
+        <li><a href="./assets/pages/03-element-styles/css-element-style.html">버튼 클릭 시, 요소 스타일 설정 실습</a></li>
+        <li><a href="./assets/pages/03-element-styles/css-custom-property.html">버튼 클릭 시, 사용자 정의 CSS 속성 설정 실습</a></li>
+        <li><a href="./assets/pages/03-element-styles/read-inline-style.html">인라인 스타일 읽기</a></li>
+        <li><a href="./assets/pages/03-element-styles/read-computed-style.html">계산된 스타일 읽기</a></li>
+        <li><a href="./assets/pages/03-element-styles/read-pseudo-element-style.html">가상요소 스타일 읽기</a></li>
+        <li><a href="./assets/pages/04-css-utils/practice-01.html">글자 크기 조정</a></li>
+        <li><a href="./assets/pages/04-css-utils/practice-02.html">글자 및 배경 색상 조절</a></li>
+        <li><a href="./assets/pages/05-attributes/practice.html">속성 설정, 읽기, 제거</a></li>
+        <li><a href="./assets/pages/06-element-rect-info/practice-01.html">버튼 클릭 시, 요소의 위치와 크기 확인</a></li>
+        <li><a href="./assets/pages/06-element-rect-info/practice-02.html">마우스 오버 시, 요소 화면에 위치 표시</a></li>
+      </ul>
     </section>
 
-    <div hidden id="star-wars">
-      <div class="character" data-type="good-guy">루크 스카이워커</div>
-      <div class="character" data-type="good-guy">요다</div>
-      <div class="character" data-type="villain">다스 베이더</div>
-    </div>
-
-    <p id="notice" class="announcement" data-category="event" data-user-id="27" data-role="manager" data-status="active">모든 태그는 여러 개의 속성을 가질 수 있습니다!</p>
-    <form hidden>
-      <div>
-        <!-- HTML attribute -->
-        <input type="checkbox" name="hobby" id="hobby" checked />
-        <label for="hobby">취미</label>
+    <section>
+      <h2 class="section-title">JavaScript Study Markup</h2>
+      <div id="star-wars">
+        <!-- 1 -->
+        <!-- 2 -->
+        <!-- 3 -->
+        <!-- 4 -->
+        <div class="character" data-type="good-guy"><span>루크</span> <span>스카이워커</span></div>
+        <div class="character" data-type="good-guy">
+          <b>요</b>
+          <i>다</i>
+        </div>
+        <div class="character" data-type="villain"><em>다스</em> <strong>베이더</strong></div>
       </div>
-      <button type="submit">제출</button>
-    </form>
+
+      <ul class="faq-list">
+        <li><a href="/faq/shipping">배송 관련 문의</a></li>
+        <li><a href="/faq/payment">결제 방법 안내</a></li>
+        <li><a href="/faq/return">반품 및 환불 정책</a></li>
+        <li><a href="/faq/account">계정 및 개인정보</a></li>
+        <li><a href="/faq/coupon">쿠폰 및 프로모션</a></li>
+      </ul>
+    </section>
 
     <script src="./assets/scripts/learn/42-element-bounding-rect-info.js"></script>
   </body>
