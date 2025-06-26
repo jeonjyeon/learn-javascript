@@ -649,7 +649,7 @@
 };
 
 // 6. 버튼 숨겨진 상태 설정 기능(함수) 추출
-(() => {
+() => {
   const caraousel = document.querySelector('.carousel');
   const contentWrapper = caraousel.querySelector('.carousel__contents');
   const contents = contentWrapper.querySelectorAll('.carousel__content');
@@ -696,6 +696,977 @@
 
   // 버튼 숨겨진 상태 설정 기능(함수)
   // setting Up Buttons Hidden Status
+  function settingUpButtonsHiddenStatus() {
+    let selectedIndex = -1;
+
+    for (let i = 0, l = contents.length; i < l; ++i) {
+      if (contents.item(i).classList.contains(SELECTED_CLASSNAME)) {
+        selectedIndex = i;
+        break;
+      }
+    }
+
+    if (selectedIndex === -1) {
+      console.warn('어떤 캐러셀 콘텐츠에도 활성 상태를 나타내는 클래스 이름이 추가되지 않았습니다.');
+    } else if (selectedIndex === 0) {
+      prevButton.hidden = true;
+    } else if (selectedIndex === contents.length - 1) {
+      nextButton.hidden = true;
+    }
+  }
+};
+
+// 7-1. 인디케이터 탐색 | 인디케이터
+() => {
+  const caraousel = document.querySelector('.carousel');
+
+  const contentWrapper = caraousel.querySelector('.carousel__contents');
+  const contents = contentWrapper.querySelectorAll('.carousel__content');
+
+  // 인디케이터 래퍼 요소 찾기
+  const indicatorWrapper = caraousel.querySelector('.carousel__indicators');
+  // 인디케이터 (버튼) 요소 찾기
+  const indicators = indicatorWrapper.querySelectorAll('.carousel__indicator');
+
+  const prevButton = caraousel.querySelector('[aria-label^="이전"]');
+  const nextButton = caraousel.querySelector('[aria-label^="다음"]');
+
+  const SELECTED_CLASSNAME = 'is-selected';
+
+  settingUpButtonsHiddenStatus();
+
+  nextButton.addEventListener('click', () => {
+    if (prevButton.hidden) {
+      prevButton.hidden = false;
+    }
+
+    const selectedContent = contentWrapper.querySelector('.' + SELECTED_CLASSNAME);
+    const nextContent = selectedContent.nextElementSibling;
+
+    const distance = getComputedStyle(nextContent).getPropertyValue('left');
+    contentWrapper.style.setProperty('transform', 'translateX(-' + distance + ')');
+
+    selectedContent.classList.remove(SELECTED_CLASSNAME);
+    nextContent.classList.add(SELECTED_CLASSNAME);
+
+    if (!nextContent.nextElementSibling) nextButton.hidden = true;
+  });
+
+  prevButton.addEventListener('click', () => {
+    if (nextButton.hidden) {
+      nextButton.hidden = false;
+    }
+
+    const selectedContent = contentWrapper.querySelector('.' + SELECTED_CLASSNAME);
+    const prevContent = selectedContent.previousElementSibling;
+
+    const distance = getComputedStyle(prevContent).getPropertyValue('left');
+    contentWrapper.style.setProperty('transform', 'translateX(-' + distance + ')');
+
+    selectedContent.classList.remove(SELECTED_CLASSNAME);
+    prevContent.classList.add(SELECTED_CLASSNAME);
+
+    if (!prevContent.previousElementSibling) prevButton.hidden = true;
+  });
+
+  function settingUpButtonsHiddenStatus() {
+    let selectedIndex = -1;
+
+    for (let i = 0, l = contents.length; i < l; ++i) {
+      if (contents.item(i).classList.contains(SELECTED_CLASSNAME)) {
+        selectedIndex = i;
+        break;
+      }
+    }
+
+    if (selectedIndex === -1) {
+      console.warn('어떤 캐러셀 콘텐츠에도 활성 상태를 나타내는 클래스 이름이 추가되지 않았습니다.');
+    } else if (selectedIndex === 0) {
+      prevButton.hidden = true;
+    } else if (selectedIndex === contents.length - 1) {
+      nextButton.hidden = true;
+    }
+  }
+};
+
+// 7-2. 인디케이터의 집합을 순환해서 이벤트 리스너 추가 | 인디케이터
+() => {
+  const caraousel = document.querySelector('.carousel');
+
+  const contentWrapper = caraousel.querySelector('.carousel__contents');
+  const contents = contentWrapper.querySelectorAll('.carousel__content');
+
+  const indicatorWrapper = caraousel.querySelector('.carousel__indicators');
+  const indicators = indicatorWrapper.querySelectorAll('.carousel__indicator');
+
+  const prevButton = caraousel.querySelector('[aria-label^="이전"]');
+  const nextButton = caraousel.querySelector('[aria-label^="다음"]');
+
+  const SELECTED_CLASSNAME = 'is-selected';
+
+  settingUpButtonsHiddenStatus();
+
+  nextButton.addEventListener('click', () => {
+    if (prevButton.hidden) {
+      prevButton.hidden = false;
+    }
+
+    const selectedContent = contentWrapper.querySelector('.' + SELECTED_CLASSNAME);
+    const nextContent = selectedContent.nextElementSibling;
+
+    const distance = getComputedStyle(nextContent).getPropertyValue('left');
+    contentWrapper.style.setProperty('transform', 'translateX(-' + distance + ')');
+
+    selectedContent.classList.remove(SELECTED_CLASSNAME);
+    nextContent.classList.add(SELECTED_CLASSNAME);
+
+    if (!nextContent.nextElementSibling) nextButton.hidden = true;
+  });
+
+  prevButton.addEventListener('click', () => {
+    if (nextButton.hidden) {
+      nextButton.hidden = false;
+    }
+
+    const selectedContent = contentWrapper.querySelector('.' + SELECTED_CLASSNAME);
+    const prevContent = selectedContent.previousElementSibling;
+
+    const distance = getComputedStyle(prevContent).getPropertyValue('left');
+    contentWrapper.style.setProperty('transform', 'translateX(-' + distance + ')');
+
+    selectedContent.classList.remove(SELECTED_CLASSNAME);
+    prevContent.classList.add(SELECTED_CLASSNAME);
+
+    if (!prevContent.previousElementSibling) prevButton.hidden = true;
+  });
+
+  // 인디케이터 집합을 순환 처리
+  // for...of
+  for (const indicator of indicators) {
+    // 각 인디케이터에 이벤트 리스너 추가
+    indicator.addEventListener('click', () => {
+      console.log(indicator);
+    });
+  }
+
+  // forEach
+  // indicators.forEach((indicator) => {
+  //   // 각 인디케이터에 이벤트 리스너 추가
+  //   indicator.addEventListener('click', () => {
+  //     console.log(indicator);
+  //   });
+  // });
+
+  function settingUpButtonsHiddenStatus() {
+    let selectedIndex = -1;
+
+    for (let i = 0, l = contents.length; i < l; ++i) {
+      if (contents.item(i).classList.contains(SELECTED_CLASSNAME)) {
+        selectedIndex = i;
+        break;
+      }
+    }
+
+    if (selectedIndex === -1) {
+      console.warn('어떤 캐러셀 콘텐츠에도 활성 상태를 나타내는 클래스 이름이 추가되지 않았습니다.');
+    } else if (selectedIndex === 0) {
+      prevButton.hidden = true;
+    } else if (selectedIndex === contents.length - 1) {
+      nextButton.hidden = true;
+    }
+  }
+};
+
+// 7-3. 탐색한 인덱스 찾기 | 인디케이터
+() => {
+  const caraousel = document.querySelector('.carousel');
+
+  const contentWrapper = caraousel.querySelector('.carousel__contents');
+  const contents = contentWrapper.querySelectorAll('.carousel__content');
+
+  const indicatorWrapper = caraousel.querySelector('.carousel__indicators');
+  const indicators = indicatorWrapper.querySelectorAll('.carousel__indicator');
+
+  const prevButton = caraousel.querySelector('[aria-label^="이전"]');
+  const nextButton = caraousel.querySelector('[aria-label^="다음"]');
+
+  const SELECTED_CLASSNAME = 'is-selected';
+
+  settingUpButtonsHiddenStatus();
+
+  nextButton.addEventListener('click', () => {
+    if (prevButton.hidden) {
+      prevButton.hidden = false;
+    }
+
+    const selectedContent = contentWrapper.querySelector('.' + SELECTED_CLASSNAME);
+    const nextContent = selectedContent.nextElementSibling;
+
+    const distance = getComputedStyle(nextContent).getPropertyValue('left');
+    contentWrapper.style.setProperty('transform', 'translateX(-' + distance + ')');
+
+    selectedContent.classList.remove(SELECTED_CLASSNAME);
+    nextContent.classList.add(SELECTED_CLASSNAME);
+
+    if (!nextContent.nextElementSibling) nextButton.hidden = true;
+  });
+
+  prevButton.addEventListener('click', () => {
+    if (nextButton.hidden) {
+      nextButton.hidden = false;
+    }
+
+    const selectedContent = contentWrapper.querySelector('.' + SELECTED_CLASSNAME);
+    const prevContent = selectedContent.previousElementSibling;
+
+    const distance = getComputedStyle(prevContent).getPropertyValue('left');
+    contentWrapper.style.setProperty('transform', 'translateX(-' + distance + ')');
+
+    selectedContent.classList.remove(SELECTED_CLASSNAME);
+    prevContent.classList.add(SELECTED_CLASSNAME);
+
+    if (!prevContent.previousElementSibling) prevButton.hidden = true;
+  });
+
+  for (const indicator of indicators) {
+    indicator.addEventListener('click', () => {
+      let selectedIndex;
+
+      for (let i = 0, l = indicators.length; i < l; i += 1) {
+        // 순환 중인 상태의 인디케이터와 현재 클릭한 인디케이터가 동일한가?
+        if (indicators.item(i) === indicator) {
+          // 동일하다면? 그 인덱스가 선택된 인덱스이다.
+          selectedIndex = i;
+          console.log(selectedIndex);
+          break;
+        }
+      }
+    });
+  }
+
+  function settingUpButtonsHiddenStatus() {
+    let selectedIndex = -1;
+
+    for (let i = 0, l = contents.length; i < l; ++i) {
+      if (contents.item(i).classList.contains(SELECTED_CLASSNAME)) {
+        selectedIndex = i;
+        break;
+      }
+    }
+
+    if (selectedIndex === -1) {
+      console.warn('어떤 캐러셀 콘텐츠에도 활성 상태를 나타내는 클래스 이름이 추가되지 않았습니다.');
+    } else if (selectedIndex === 0) {
+      prevButton.hidden = true;
+    } else if (selectedIndex === contents.length - 1) {
+      nextButton.hidden = true;
+    }
+  }
+};
+
+// 7-4. 탐색한 콘텐츠 찾기 | 인디케이터
+() => {
+  const caraousel = document.querySelector('.carousel');
+
+  const contentWrapper = caraousel.querySelector('.carousel__contents');
+  const contents = contentWrapper.querySelectorAll('.carousel__content');
+
+  const indicatorWrapper = caraousel.querySelector('.carousel__indicators');
+  const indicators = indicatorWrapper.querySelectorAll('.carousel__indicator');
+
+  const prevButton = caraousel.querySelector('[aria-label^="이전"]');
+  const nextButton = caraousel.querySelector('[aria-label^="다음"]');
+
+  const SELECTED_CLASSNAME = 'is-selected';
+
+  settingUpButtonsHiddenStatus();
+
+  nextButton.addEventListener('click', () => {
+    if (prevButton.hidden) {
+      prevButton.hidden = false;
+    }
+
+    const selectedContent = contentWrapper.querySelector('.' + SELECTED_CLASSNAME);
+    const nextContent = selectedContent.nextElementSibling;
+
+    const distance = getComputedStyle(nextContent).getPropertyValue('left');
+    contentWrapper.style.setProperty('transform', 'translateX(-' + distance + ')');
+
+    selectedContent.classList.remove(SELECTED_CLASSNAME);
+    nextContent.classList.add(SELECTED_CLASSNAME);
+
+    if (!nextContent.nextElementSibling) nextButton.hidden = true;
+  });
+
+  prevButton.addEventListener('click', () => {
+    if (nextButton.hidden) {
+      nextButton.hidden = false;
+    }
+
+    const selectedContent = contentWrapper.querySelector('.' + SELECTED_CLASSNAME);
+    const prevContent = selectedContent.previousElementSibling;
+
+    const distance = getComputedStyle(prevContent).getPropertyValue('left');
+    contentWrapper.style.setProperty('transform', 'translateX(-' + distance + ')');
+
+    selectedContent.classList.remove(SELECTED_CLASSNAME);
+    prevContent.classList.add(SELECTED_CLASSNAME);
+
+    if (!prevContent.previousElementSibling) prevButton.hidden = true;
+  });
+
+  for (const indicator of indicators) {
+    indicator.addEventListener('click', () => {
+      let selectedIndex;
+
+      for (let i = 0, l = indicators.length; i < l; i += 1) {
+        if (indicators.item(i) === indicator) {
+          selectedIndex = i;
+          break;
+        }
+      }
+
+      // 탐색한 콘텐츠 찾기
+      const activeContent = contents.item(selectedIndex);
+      console.log(activeContent);
+    });
+  }
+
+  function settingUpButtonsHiddenStatus() {
+    let selectedIndex = -1;
+
+    for (let i = 0, l = contents.length; i < l; ++i) {
+      if (contents.item(i).classList.contains(SELECTED_CLASSNAME)) {
+        selectedIndex = i;
+        break;
+      }
+    }
+
+    if (selectedIndex === -1) {
+      console.warn('어떤 캐러셀 콘텐츠에도 활성 상태를 나타내는 클래스 이름이 추가되지 않았습니다.');
+    } else if (selectedIndex === 0) {
+      prevButton.hidden = true;
+    } else if (selectedIndex === contents.length - 1) {
+      nextButton.hidden = true;
+    }
+  }
+};
+
+// 7-5. 탐색한 콘텐츠로 전환(이동) | 인디케이터
+() => {
+  const caraousel = document.querySelector('.carousel');
+
+  const contentWrapper = caraousel.querySelector('.carousel__contents');
+  const contents = contentWrapper.querySelectorAll('.carousel__content');
+
+  const indicatorWrapper = caraousel.querySelector('.carousel__indicators');
+  const indicators = indicatorWrapper.querySelectorAll('.carousel__indicator');
+
+  const prevButton = caraousel.querySelector('[aria-label^="이전"]');
+  const nextButton = caraousel.querySelector('[aria-label^="다음"]');
+
+  const SELECTED_CLASSNAME = 'is-selected';
+
+  settingUpButtonsHiddenStatus();
+
+  nextButton.addEventListener('click', () => {
+    if (prevButton.hidden) {
+      prevButton.hidden = false;
+    }
+
+    const selectedContent = contentWrapper.querySelector('.' + SELECTED_CLASSNAME);
+    const nextContent = selectedContent.nextElementSibling;
+
+    const distance = getComputedStyle(nextContent).getPropertyValue('left');
+    contentWrapper.style.setProperty('transform', 'translateX(-' + distance + ')');
+
+    selectedContent.classList.remove(SELECTED_CLASSNAME);
+    nextContent.classList.add(SELECTED_CLASSNAME);
+
+    if (!nextContent.nextElementSibling) nextButton.hidden = true;
+  });
+
+  prevButton.addEventListener('click', () => {
+    if (nextButton.hidden) {
+      nextButton.hidden = false;
+    }
+
+    const selectedContent = contentWrapper.querySelector('.' + SELECTED_CLASSNAME);
+    const prevContent = selectedContent.previousElementSibling;
+
+    const distance = getComputedStyle(prevContent).getPropertyValue('left');
+    contentWrapper.style.setProperty('transform', 'translateX(-' + distance + ')');
+
+    selectedContent.classList.remove(SELECTED_CLASSNAME);
+    prevContent.classList.add(SELECTED_CLASSNAME);
+
+    if (!prevContent.previousElementSibling) prevButton.hidden = true;
+  });
+
+  for (const indicator of indicators) {
+    indicator.addEventListener('click', () => {
+      let selectedIndex;
+
+      for (let i = 0, l = indicators.length; i < l; i += 1) {
+        if (indicators.item(i) === indicator) {
+          selectedIndex = i;
+          break;
+        }
+      }
+
+      const activeContent = contents.item(selectedIndex);
+
+      // 탐색한 콘텐츠로 이동
+      const distance = getComputedStyle(activeContent).getPropertyValue('left');
+      contentWrapper.style.setProperty('transform', 'translateX(-' + distance + ')');
+    });
+  }
+
+  function settingUpButtonsHiddenStatus() {
+    let selectedIndex = -1;
+
+    for (let i = 0, l = contents.length; i < l; ++i) {
+      if (contents.item(i).classList.contains(SELECTED_CLASSNAME)) {
+        selectedIndex = i;
+        break;
+      }
+    }
+
+    if (selectedIndex === -1) {
+      console.warn('어떤 캐러셀 콘텐츠에도 활성 상태를 나타내는 클래스 이름이 추가되지 않았습니다.');
+    } else if (selectedIndex === 0) {
+      prevButton.hidden = true;
+    } else if (selectedIndex === contents.length - 1) {
+      nextButton.hidden = true;
+    }
+  }
+};
+
+// 7-6. 선택된 콘텐츠 상태 변경 | 인디케이터
+() => {
+  const caraousel = document.querySelector('.carousel');
+
+  const contentWrapper = caraousel.querySelector('.carousel__contents');
+  const contents = contentWrapper.querySelectorAll('.carousel__content');
+
+  const indicatorWrapper = caraousel.querySelector('.carousel__indicators');
+  const indicators = indicatorWrapper.querySelectorAll('.carousel__indicator');
+
+  const prevButton = caraousel.querySelector('[aria-label^="이전"]');
+  const nextButton = caraousel.querySelector('[aria-label^="다음"]');
+
+  const SELECTED_CLASSNAME = 'is-selected';
+
+  settingUpButtonsHiddenStatus();
+
+  nextButton.addEventListener('click', () => {
+    if (prevButton.hidden) {
+      prevButton.hidden = false;
+    }
+
+    const selectedContent = contentWrapper.querySelector('.' + SELECTED_CLASSNAME);
+    const nextContent = selectedContent.nextElementSibling;
+
+    const distance = getComputedStyle(nextContent).getPropertyValue('left');
+    contentWrapper.style.setProperty('transform', 'translateX(-' + distance + ')');
+
+    selectedContent.classList.remove(SELECTED_CLASSNAME);
+    nextContent.classList.add(SELECTED_CLASSNAME);
+
+    if (!nextContent.nextElementSibling) nextButton.hidden = true;
+  });
+
+  prevButton.addEventListener('click', () => {
+    if (nextButton.hidden) {
+      nextButton.hidden = false;
+    }
+
+    const selectedContent = contentWrapper.querySelector('.' + SELECTED_CLASSNAME);
+    const prevContent = selectedContent.previousElementSibling;
+
+    const distance = getComputedStyle(prevContent).getPropertyValue('left');
+    contentWrapper.style.setProperty('transform', 'translateX(-' + distance + ')');
+
+    selectedContent.classList.remove(SELECTED_CLASSNAME);
+    prevContent.classList.add(SELECTED_CLASSNAME);
+
+    if (!prevContent.previousElementSibling) prevButton.hidden = true;
+  });
+
+  for (const indicator of indicators) {
+    indicator.addEventListener('click', () => {
+      let selectedIndex;
+
+      for (let i = 0, l = indicators.length; i < l; i += 1) {
+        if (indicators.item(i) === indicator) {
+          selectedIndex = i;
+          break;
+        }
+      }
+
+      const activeContent = contents.item(selectedIndex);
+      const distance = getComputedStyle(activeContent).getPropertyValue('left');
+      contentWrapper.style.setProperty('transform', 'translateX(-' + distance + ')');
+
+      // 선택된 콘텐츠 상태 변경
+      // 이전에 선택된 콘텐츠 찾기
+      const selectedContent = contentWrapper.querySelector('.' + SELECTED_CLASSNAME);
+
+      // 이전 선택된 콘텐츠에 활성 클래스 이름 제거
+      selectedContent.classList.remove(SELECTED_CLASSNAME);
+
+      // 현재 선택된 콘텐츠에 활성 클래스 이름 추가
+      activeContent.classList.add(SELECTED_CLASSNAME);
+    });
+  }
+
+  function settingUpButtonsHiddenStatus() {
+    let selectedIndex = -1;
+
+    for (let i = 0, l = contents.length; i < l; ++i) {
+      if (contents.item(i).classList.contains(SELECTED_CLASSNAME)) {
+        selectedIndex = i;
+        break;
+      }
+    }
+
+    if (selectedIndex === -1) {
+      console.warn('어떤 캐러셀 콘텐츠에도 활성 상태를 나타내는 클래스 이름이 추가되지 않았습니다.');
+    } else if (selectedIndex === 0) {
+      prevButton.hidden = true;
+    } else if (selectedIndex === contents.length - 1) {
+      nextButton.hidden = true;
+    }
+  }
+};
+
+// 7-7. 선택된 인디케이터 상태 변경 | 인디케이터
+() => {
+  const caraousel = document.querySelector('.carousel');
+
+  const contentWrapper = caraousel.querySelector('.carousel__contents');
+  const contents = contentWrapper.querySelectorAll('.carousel__content');
+
+  const indicatorWrapper = caraousel.querySelector('.carousel__indicators');
+  const indicators = indicatorWrapper.querySelectorAll('.carousel__indicator');
+
+  const prevButton = caraousel.querySelector('[aria-label^="이전"]');
+  const nextButton = caraousel.querySelector('[aria-label^="다음"]');
+
+  const SELECTED_CLASSNAME = 'is-selected';
+
+  settingUpButtonsHiddenStatus();
+
+  nextButton.addEventListener('click', () => {
+    if (prevButton.hidden) {
+      prevButton.hidden = false;
+    }
+
+    const selectedContent = contentWrapper.querySelector('.' + SELECTED_CLASSNAME);
+    const nextContent = selectedContent.nextElementSibling;
+
+    const distance = getComputedStyle(nextContent).getPropertyValue('left');
+    contentWrapper.style.setProperty('transform', 'translateX(-' + distance + ')');
+
+    selectedContent.classList.remove(SELECTED_CLASSNAME);
+    nextContent.classList.add(SELECTED_CLASSNAME);
+
+    if (!nextContent.nextElementSibling) nextButton.hidden = true;
+  });
+
+  prevButton.addEventListener('click', () => {
+    if (nextButton.hidden) {
+      nextButton.hidden = false;
+    }
+
+    const selectedContent = contentWrapper.querySelector('.' + SELECTED_CLASSNAME);
+    const prevContent = selectedContent.previousElementSibling;
+
+    const distance = getComputedStyle(prevContent).getPropertyValue('left');
+    contentWrapper.style.setProperty('transform', 'translateX(-' + distance + ')');
+
+    selectedContent.classList.remove(SELECTED_CLASSNAME);
+    prevContent.classList.add(SELECTED_CLASSNAME);
+
+    if (!prevContent.previousElementSibling) prevButton.hidden = true;
+  });
+
+  for (const indicator of indicators) {
+    indicator.addEventListener('click', () => {
+      let selectedIndex;
+
+      for (let i = 0, l = indicators.length; i < l; i += 1) {
+        if (indicators.item(i) === indicator) {
+          selectedIndex = i;
+          break;
+        }
+      }
+
+      const activeContent = contents.item(selectedIndex);
+      const distance = getComputedStyle(activeContent).getPropertyValue('left');
+      contentWrapper.style.setProperty('transform', 'translateX(-' + distance + ')');
+
+      const selectedContent = contentWrapper.querySelector('.' + SELECTED_CLASSNAME);
+      selectedContent.classList.remove(SELECTED_CLASSNAME);
+      activeContent.classList.add(SELECTED_CLASSNAME);
+
+      // 이전 선택된 인디케이터 찾기
+      const selectedIndicator = indicatorWrapper.querySelector('.' + SELECTED_CLASSNAME);
+      // 이전 선택된 인디케이터에서 활성 클래스 이름 제거
+      selectedIndicator.classList.remove(SELECTED_CLASSNAME);
+
+      // 현재 선택된 인디케이터에서 활성 클래스 이름 추가
+      indicator.classList.add(SELECTED_CLASSNAME);
+    });
+  }
+
+  function settingUpButtonsHiddenStatus() {
+    let selectedIndex = -1;
+
+    for (let i = 0, l = contents.length; i < l; ++i) {
+      if (contents.item(i).classList.contains(SELECTED_CLASSNAME)) {
+        selectedIndex = i;
+        break;
+      }
+    }
+
+    if (selectedIndex === -1) {
+      console.warn('어떤 캐러셀 콘텐츠에도 활성 상태를 나타내는 클래스 이름이 추가되지 않았습니다.');
+    } else if (selectedIndex === 0) {
+      prevButton.hidden = true;
+    } else if (selectedIndex === contents.length - 1) {
+      nextButton.hidden = true;
+    }
+  }
+};
+
+// 8-1. 다음 탐색 버튼 동기화 | 상태 동기화
+() => {
+  const caraousel = document.querySelector('.carousel');
+
+  const contentWrapper = caraousel.querySelector('.carousel__contents');
+  const contents = contentWrapper.querySelectorAll('.carousel__content');
+
+  const indicatorWrapper = caraousel.querySelector('.carousel__indicators');
+  const indicators = indicatorWrapper.querySelectorAll('.carousel__indicator');
+
+  const prevButton = caraousel.querySelector('[aria-label^="이전"]');
+  const nextButton = caraousel.querySelector('[aria-label^="다음"]');
+
+  const SELECTED_CLASSNAME = 'is-selected';
+
+  settingUpButtonsHiddenStatus();
+
+  nextButton.addEventListener('click', () => {
+    if (prevButton.hidden) {
+      prevButton.hidden = false;
+    }
+
+    const selectedContent = contentWrapper.querySelector('.' + SELECTED_CLASSNAME);
+    const nextContent = selectedContent.nextElementSibling;
+
+    const distance = getComputedStyle(nextContent).getPropertyValue('left');
+    contentWrapper.style.setProperty('transform', 'translateX(-' + distance + ')');
+
+    selectedContent.classList.remove(SELECTED_CLASSNAME);
+    nextContent.classList.add(SELECTED_CLASSNAME);
+
+    if (!nextContent.nextElementSibling) nextButton.hidden = true;
+
+    // 사용자가 다음 탐색 버튼을 누르면
+    // 인디케이터 중에 현재 활성 상태인 것 찾기
+    const selectedIndicator = indicatorWrapper.querySelector('.' + SELECTED_CLASSNAME);
+    const nextIndicator = selectedIndicator.nextElementSibling;
+
+    // 이전 선택된 인디케이터에서 활성 클래스 이름 제거
+    selectedIndicator.classList.remove(SELECTED_CLASSNAME);
+
+    // 다음 선택될 인디케이터에서 활성 클래스 이름 추가
+    nextIndicator.classList.add(SELECTED_CLASSNAME);
+  });
+
+  prevButton.addEventListener('click', () => {
+    if (nextButton.hidden) {
+      nextButton.hidden = false;
+    }
+
+    const selectedContent = contentWrapper.querySelector('.' + SELECTED_CLASSNAME);
+    const prevContent = selectedContent.previousElementSibling;
+
+    const distance = getComputedStyle(prevContent).getPropertyValue('left');
+    contentWrapper.style.setProperty('transform', 'translateX(-' + distance + ')');
+
+    selectedContent.classList.remove(SELECTED_CLASSNAME);
+    prevContent.classList.add(SELECTED_CLASSNAME);
+
+    if (!prevContent.previousElementSibling) prevButton.hidden = true;
+  });
+
+  for (const indicator of indicators) {
+    indicator.addEventListener('click', () => {
+      let selectedIndex;
+
+      for (let i = 0, l = indicators.length; i < l; i += 1) {
+        if (indicators.item(i) === indicator) {
+          selectedIndex = i;
+          break;
+        }
+      }
+
+      const activeContent = contents.item(selectedIndex);
+      const distance = getComputedStyle(activeContent).getPropertyValue('left');
+      contentWrapper.style.setProperty('transform', 'translateX(-' + distance + ')');
+
+      const selectedContent = contentWrapper.querySelector('.' + SELECTED_CLASSNAME);
+      selectedContent.classList.remove(SELECTED_CLASSNAME);
+      activeContent.classList.add(SELECTED_CLASSNAME);
+
+      const selectedIndicator = indicatorWrapper.querySelector('.' + SELECTED_CLASSNAME);
+      selectedIndicator.classList.remove(SELECTED_CLASSNAME);
+      indicator.classList.add(SELECTED_CLASSNAME);
+    });
+  }
+
+  function settingUpButtonsHiddenStatus() {
+    let selectedIndex = -1;
+
+    for (let i = 0, l = contents.length; i < l; ++i) {
+      if (contents.item(i).classList.contains(SELECTED_CLASSNAME)) {
+        selectedIndex = i;
+        break;
+      }
+    }
+
+    if (selectedIndex === -1) {
+      console.warn('어떤 캐러셀 콘텐츠에도 활성 상태를 나타내는 클래스 이름이 추가되지 않았습니다.');
+    } else if (selectedIndex === 0) {
+      prevButton.hidden = true;
+    } else if (selectedIndex === contents.length - 1) {
+      nextButton.hidden = true;
+    }
+  }
+};
+
+// 8-2. 이전 탐색 버튼 동기화 | 상태 동기화
+() => {
+  const caraousel = document.querySelector('.carousel');
+
+  const contentWrapper = caraousel.querySelector('.carousel__contents');
+  const contents = contentWrapper.querySelectorAll('.carousel__content');
+
+  const indicatorWrapper = caraousel.querySelector('.carousel__indicators');
+  const indicators = indicatorWrapper.querySelectorAll('.carousel__indicator');
+
+  const prevButton = caraousel.querySelector('[aria-label^="이전"]');
+  const nextButton = caraousel.querySelector('[aria-label^="다음"]');
+
+  const SELECTED_CLASSNAME = 'is-selected';
+
+  settingUpButtonsHiddenStatus();
+
+  nextButton.addEventListener('click', () => {
+    if (prevButton.hidden) {
+      prevButton.hidden = false;
+    }
+
+    const selectedContent = contentWrapper.querySelector('.' + SELECTED_CLASSNAME);
+    const nextContent = selectedContent.nextElementSibling;
+
+    const distance = getComputedStyle(nextContent).getPropertyValue('left');
+    contentWrapper.style.setProperty('transform', 'translateX(-' + distance + ')');
+
+    selectedContent.classList.remove(SELECTED_CLASSNAME);
+    nextContent.classList.add(SELECTED_CLASSNAME);
+
+    if (!nextContent.nextElementSibling) nextButton.hidden = true;
+
+    const selectedIndicator = indicatorWrapper.querySelector('.' + SELECTED_CLASSNAME);
+    const nextIndicator = selectedIndicator.nextElementSibling;
+
+    selectedIndicator.classList.remove(SELECTED_CLASSNAME);
+    nextIndicator.classList.add(SELECTED_CLASSNAME);
+  });
+
+  prevButton.addEventListener('click', () => {
+    if (nextButton.hidden) {
+      nextButton.hidden = false;
+    }
+
+    const selectedContent = contentWrapper.querySelector('.' + SELECTED_CLASSNAME);
+    const prevContent = selectedContent.previousElementSibling;
+
+    const distance = getComputedStyle(prevContent).getPropertyValue('left');
+    contentWrapper.style.setProperty('transform', 'translateX(-' + distance + ')');
+
+    selectedContent.classList.remove(SELECTED_CLASSNAME);
+    prevContent.classList.add(SELECTED_CLASSNAME);
+
+    if (!prevContent.previousElementSibling) prevButton.hidden = true;
+
+    // 사용자가 이전 탐색 버튼을 누르면
+    // 인디케이터 중에 현재 활성 상태인 것 찾기
+    const selectedIndicator = indicatorWrapper.querySelector('.' + SELECTED_CLASSNAME);
+    const prevIndicator = selectedIndicator.previousElementSibling;
+
+    // 이전 선택된 인디케이터에서 활성 클래스 이름 제거
+    selectedIndicator.classList.remove(SELECTED_CLASSNAME);
+
+    // 다음 선택될 인디케이터에서 활성 클래스 이름 추가
+    prevIndicator.classList.add(SELECTED_CLASSNAME);
+  });
+
+  for (const indicator of indicators) {
+    indicator.addEventListener('click', () => {
+      let selectedIndex;
+
+      for (let i = 0, l = indicators.length; i < l; i += 1) {
+        if (indicators.item(i) === indicator) {
+          selectedIndex = i;
+          break;
+        }
+      }
+
+      const activeContent = contents.item(selectedIndex);
+      const distance = getComputedStyle(activeContent).getPropertyValue('left');
+      contentWrapper.style.setProperty('transform', 'translateX(-' + distance + ')');
+
+      const selectedContent = contentWrapper.querySelector('.' + SELECTED_CLASSNAME);
+      selectedContent.classList.remove(SELECTED_CLASSNAME);
+      activeContent.classList.add(SELECTED_CLASSNAME);
+
+      const selectedIndicator = indicatorWrapper.querySelector('.' + SELECTED_CLASSNAME);
+      selectedIndicator.classList.remove(SELECTED_CLASSNAME);
+      indicator.classList.add(SELECTED_CLASSNAME);
+    });
+  }
+
+  function settingUpButtonsHiddenStatus() {
+    let selectedIndex = -1;
+
+    for (let i = 0, l = contents.length; i < l; ++i) {
+      if (contents.item(i).classList.contains(SELECTED_CLASSNAME)) {
+        selectedIndex = i;
+        break;
+      }
+    }
+
+    if (selectedIndex === -1) {
+      console.warn('어떤 캐러셀 콘텐츠에도 활성 상태를 나타내는 클래스 이름이 추가되지 않았습니다.');
+    } else if (selectedIndex === 0) {
+      prevButton.hidden = true;
+    } else if (selectedIndex === contents.length - 1) {
+      nextButton.hidden = true;
+    }
+  }
+};
+
+// 8-3. 이전 탐색 버튼 동기화 | 상태 동기화
+(() => {
+  const caraousel = document.querySelector('.carousel');
+
+  const contentWrapper = caraousel.querySelector('.carousel__contents');
+  const contents = contentWrapper.querySelectorAll('.carousel__content');
+
+  const indicatorWrapper = caraousel.querySelector('.carousel__indicators');
+  const indicators = indicatorWrapper.querySelectorAll('.carousel__indicator');
+
+  const prevButton = caraousel.querySelector('[aria-label^="이전"]');
+  const nextButton = caraousel.querySelector('[aria-label^="다음"]');
+
+  const SELECTED_CLASSNAME = 'is-selected';
+
+  settingUpButtonsHiddenStatus();
+
+  nextButton.addEventListener('click', () => {
+    if (prevButton.hidden) {
+      prevButton.hidden = false;
+    }
+
+    const selectedContent = contentWrapper.querySelector('.' + SELECTED_CLASSNAME);
+    const nextContent = selectedContent.nextElementSibling;
+
+    const distance = getComputedStyle(nextContent).getPropertyValue('left');
+    contentWrapper.style.setProperty('transform', 'translateX(-' + distance + ')');
+
+    selectedContent.classList.remove(SELECTED_CLASSNAME);
+    nextContent.classList.add(SELECTED_CLASSNAME);
+
+    if (!nextContent.nextElementSibling) nextButton.hidden = true;
+
+    const selectedIndicator = indicatorWrapper.querySelector('.' + SELECTED_CLASSNAME);
+    const nextIndicator = selectedIndicator.nextElementSibling;
+
+    selectedIndicator.classList.remove(SELECTED_CLASSNAME);
+    nextIndicator.classList.add(SELECTED_CLASSNAME);
+  });
+
+  prevButton.addEventListener('click', () => {
+    if (nextButton.hidden) {
+      nextButton.hidden = false;
+    }
+
+    const selectedContent = contentWrapper.querySelector('.' + SELECTED_CLASSNAME);
+    const prevContent = selectedContent.previousElementSibling;
+
+    const distance = getComputedStyle(prevContent).getPropertyValue('left');
+    contentWrapper.style.setProperty('transform', 'translateX(-' + distance + ')');
+
+    selectedContent.classList.remove(SELECTED_CLASSNAME);
+    prevContent.classList.add(SELECTED_CLASSNAME);
+
+    if (!prevContent.previousElementSibling) prevButton.hidden = true;
+
+    const selectedIndicator = indicatorWrapper.querySelector('.' + SELECTED_CLASSNAME);
+    const prevIndicator = selectedIndicator.previousElementSibling;
+
+    selectedIndicator.classList.remove(SELECTED_CLASSNAME);
+    prevIndicator.classList.add(SELECTED_CLASSNAME);
+  });
+
+  for (const indicator of indicators) {
+    indicator.addEventListener('click', () => {
+      let selectedIndex;
+
+      for (let i = 0, l = indicators.length; i < l; i += 1) {
+        if (indicators.item(i) === indicator) {
+          selectedIndex = i;
+          break;
+        }
+      }
+
+      // selectedIndex 값이 처음(0)일 때
+      // -> prevButton 숨긴다, nextButton 보인다
+      if (selectedIndex === 0) {
+        prevButton.hidden = true;
+        nextButton.hidden = false;
+      }
+      // selectedIndex 값이 마지막 인덱스(indicators.length -1)일 때
+      // -> prevButton 보인다, nextButton 숨긴다
+      else if (selectedIndex === indicators.length - 1) {
+        prevButton.hidden = false;
+        nextButton.hidden = true;
+      }
+      // 둘 다 아닐 때
+      // -> prevButton, nextButton 둘 다 보인다
+      else {
+        prevButton.hidden = false;
+        nextButton.hidden = false;
+      }
+
+      const activeContent = contents.item(selectedIndex);
+      const distance = getComputedStyle(activeContent).getPropertyValue('left');
+      contentWrapper.style.setProperty('transform', 'translateX(-' + distance + ')');
+
+      const selectedContent = contentWrapper.querySelector('.' + SELECTED_CLASSNAME);
+      selectedContent.classList.remove(SELECTED_CLASSNAME);
+      activeContent.classList.add(SELECTED_CLASSNAME);
+
+      const selectedIndicator = indicatorWrapper.querySelector('.' + SELECTED_CLASSNAME);
+      selectedIndicator.classList.remove(SELECTED_CLASSNAME);
+      indicator.classList.add(SELECTED_CLASSNAME);
+    });
+  }
+
   function settingUpButtonsHiddenStatus() {
     let selectedIndex = -1;
 
