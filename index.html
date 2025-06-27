@@ -85,9 +85,27 @@
 
     <section class="javascript-study-section">
       <h2 class="section-title">JavaScript Study Markup</h2>
-      <button type="button" data-name="change-bg-color">배경색 변경</button>
+      <!-- 1. 링크 이동 방지 -->
+      <a href="https://naver.com" rel="noopener noreferrer" target="_blank"> 네이버로 이동 </a>
+      <!-- 2. 체크 방지 -->
+      <label for="agreement">
+        <input type="checkbox" checked name="agreement" id="agreement" />
+        약관에 동의합니다.
+      </label>
+      <!-- 3. 폼 제출 방지 -->
+      <form data-learn="form" method="GET" action="https://google.com">
+        <!-- 검색 필드 -->
+        <div>
+          <label for="search-term">검색어</label>
+          <input type="search" name="search-term" id="search-term" value="레인보우" placeholder="검색어를 입력" />
+        </div>
+        <div style="margin-block-start: 8px">
+          <button type="submit">검색</button>
+          <button type="reset">초기화</button>
+        </div>
+      </form>
     </section>
 
-    <script src="./assets/scripts/learn/44-event-target-or-current-target.js"></script>
+    <script src="./assets/scripts/learn/45-event-default-action.js"></script>
   </body>
 </html>
