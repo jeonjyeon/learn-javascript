@@ -55,3 +55,19 @@ h1 {
     }
   }
 }
+
+.box {
+  inline-size: 60%;
+  border: 4px solid var(--black);
+  padding: 20px;
+
+  &.box1 {
+    background-color: #4b3cf4;
+  }
+  &.box2 {
+    background-color: #00e183;
+  }
+  &.box3 {
+    background-color: #e1005a;
+  }
+}
