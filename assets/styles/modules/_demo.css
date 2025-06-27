@@ -86,10 +86,18 @@ h1 {
     padding: 20px;
 
     a {
-      display: block;
+      display: flex;
+      gap: 12px;
       border: 2px solid;
       padding: 10px;
       text-decoration: none;
+
+      svg,
+      span {
+        border: 2px dashed;
+        padding: 10px;
+        pointer-events: none;
+      }
     }
   }
 }
