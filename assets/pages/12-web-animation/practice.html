@@ -78,22 +78,22 @@
 
         /* transition-(property|duration|timing-function|delay) */
         transition-property: translate;
-        transition-duration: 1s;
+        transition-duration: 0.3s;
 
         .is-transition & {
           translate: calc(90vw - var(--size) - var(--padding)) 0;
         }
-        /* animation-(name|duration|timing-function|delay) */
-        animation-name: animateX;
-        animation-duration: 1s;
-        animation-timing-function: linear;
-        /* animation-(iteration-count|direction|fill-mode|play-state) */
-        animation-iteration-count: infinite;
-        animation-direction: alternate; /* ping pong */
-        animation-fill-mode: forwards;
-        animation-play-state: paused;
 
         .is-animation & {
+          /* animation-(name|duration|timing-function|delay) */
+          animation-name: animateX;
+          animation-duration: 1s;
+          animation-timing-function: linear;
+          /* animation-(iteration-count|direction|fill-mode|play-state) */
+          animation-iteration-count: 2;
+          animation-direction: alternate; /* ping pong */
+          animation-fill-mode: forwards;
+          /* animation-play-state: paused; */
           animation-play-state: running;
         }
       }
@@ -116,24 +116,43 @@
         //   main.classList.toggle('is-transition');
         // });
 
-        main.addEventListener('click', (e) => {
-          const mainElement = e.currentTarget;
+        // CSS Transition Event Types
+        main.addEventListener('transitionrun', (e) => {
+          console.log('transition "run"', e.propertyName, e.target);
+          e.target.style.setProperty('scale', '1 0.85');
+          e.target.style.setProperty('filter', 'blur(2px)');
+        });
 
-          if (e.target.matches('[data-type="transition"]')) {
-            mainElement.classList.toggle('is-transition');
-          }
+        main.addEventListener('transitionstart', (e) => {
+          console.log('transition "start"', e.propertyName, e.target);
+        });
 
-          if (e.target.matches('[data-type="animation"]')) {
-            let animationClassName = 'is-animation';
-            const button = e.target;
-            if (mainElement.classList.contains(animationClassName)) {
-              mainElement.classList.remove(animationClassName);
-              button.textContent = 'Animation Play';
-            } else {
-              mainElement.classList.add(animationClassName);
-              button.textContent = 'Animation Paused';
-            }
-          }
+        main.addEventListener('transitionend', (e) => {
+          console.log('transition "end"', e.propertyName, e.target);
+          e.target.style.setProperty('scale', '1');
+          e.target.style.setProperty('filter', 'blur(0)');
+        });
+
+        main.addEventListener('transitioncancel', (e) => {
+          console.log('transition "cancel"', e.propertyName, e.target);
+        });
+
+        // CSS Animation Types
+
+        main.addEventListener('animationstart', (e) => {
+          console.log('animation "start"', e.animationName, e.target);
+        });
+
+        main.addEventListener('animationiteration', (e) => {
+          console.log('animation "iteration"', e.animationName, e.target);
+        });
+
+        main.addEventListener('animationend', (e) => {
+          console.log('animation "end"', e.animationName, e.target);
+        });
+
+        main.addEventListener('animationcancel', (e) => {
+          console.log('animation "cancel', e.animationName, e.target);
         });
       });
     </script>
