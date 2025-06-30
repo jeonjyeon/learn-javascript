@@ -50,6 +50,7 @@
         margin-block-end: 50px;
       }
     </style>
+    <script defer src="./assets/scripts/learn/49-web-animations.js"></script>
   </head>
   <!-- <body style="background-color: burlywood">
     <h1 lang="en" style="color: lightyellow">JavaScript</h1> -->
@@ -93,14 +94,16 @@
     <section class="javascript-study-section">
       <h2 class="section-title">JavaScript Study Markup</h2>
 
-      <div role="group" style="display: flex; gap: 4px; margin-block: 12px">
+      <div class="ball"></div>
+
+      <div hidden role="group" style="display: flex; gap: 4px; margin-block: 12px">
         <button type="button" data-role="add-event">이벤트 추가</button>
         <button type="button" data-role="remove-event">이벤트 제거</button>
         <button data-role="tester" type="button">이벤트 추가 대기중...</button>
         <button data-role="once-event" type="button">1회만 이벤트 설정</button>
       </div>
 
-      <ul class="link-list">
+      <ul hidden class="link-list">
         <li>
           <a href="/news">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -118,7 +121,5 @@
         <li><a href="/contact">📮 문의하기</a></li>
       </ul>
     </section>
-
-    <script src="./assets/scripts/learn/48-remove-event-listener.js"></script>
   </body>
 </html>

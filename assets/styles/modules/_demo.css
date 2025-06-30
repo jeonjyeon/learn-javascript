@@ -101,3 +101,38 @@ h1 {
     }
   }
 }
+
+.ball {
+  --size: 40px;
+  --fill: #121212;
+  --fill-hover: #648876;
+  --fill-active: #f69846;
+  --radius: 100%;
+
+  inline-size: var(--size);
+  block-size: var(--size);
+  background-color: var(--fill);
+  border-radius: var(--radius);
+  /* transition:
+    background-color 0.6s linear,
+    scale 0.4s ease-out; */
+
+  transition-property: background-color, scale, block-size;
+  transition-duration: 0.6s, 0.4s, 0.4s;
+  transition-timing-function: linear, ease-out, ease-out;
+  transition-delay: 0s; /* 0s, 0s, 0s */
+
+  /* JavaScript 트랜지션 트리거 - 이벤트 핸들링 + 클래스 이름 추가/제거 */
+  &.is-transition {
+    background-color: var(--fill-active);
+  }
+
+  /* CSS 트랜지션 트리거 - 속성 값 상태 변경 */
+  &:hover {
+    background-color: var(--fill-hover);
+  }
+
+  &:active {
+    scale: 1.2;
+  }
+}
