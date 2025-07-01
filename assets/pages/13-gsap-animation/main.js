@@ -1,4 +1,4 @@
-{
+() => {
   // Web Animations API
   function playground() {
     const boxElements = document.querySelectorAll('.box');
@@ -131,10 +131,28 @@
     //   ease: 'back.inOut(7)',
     //   onUpdate: draw,
     // });
+
+    // Easing
+    // none
+    // power(1,2,3,4,).in
+    // power(1,2,3,4,).out
+    // power(1,2,3,4,).in
   }
 
   setTimeout(() => {
     playground();
     playgroundGSAP();
   }, 500);
-}
+};
+
+(() => {
+  function animate() {
+    // gsap.from('.blue', { y: 100, opacity: 0, duration: 1 });
+    // gsap.from('.yellow', { y: 100, opacity: 0, duration: 1, delay: 0.5 });
+    // gsap.from('.green', { y: 100, opacity: 0, duration: 1, delay: 1 });
+
+    gsap.from('.box', { y: 100, stagger: 0.1, ease: 'power4.out' });
+  }
+
+  setTimeout(animate, 800);
+})();
