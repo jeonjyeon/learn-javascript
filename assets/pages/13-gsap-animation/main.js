@@ -1,3 +1,4 @@
+/* global gsap */
 () => {
   // Web Animations API
   function playground() {
@@ -16,8 +17,6 @@
       // animation.play()
     });
   }
-
-  /* global gsap */
 
   // GSAP API
   // gsap.to(target, varObject)
@@ -216,7 +215,8 @@
   setTimeout(animate, 800);
 };
 
-(() => {
+// GASP -TimeLine
+() => {
   function animate() {
     gsap.to('.box', {
       rotation: 360,
@@ -232,4 +232,50 @@
   }
 
   setTimeout(animate, 800);
+};
+
+// GASP -TimeLine
+(() => {
+  function animate() {
+    // const tween = gsap.to('.box:first-of-type', {})
+    // console.log(tween)
+
+    // const tl = gsap.timeline();
+
+    // 트윈을 타임라인에 추가
+    // tl.to('.green', { x: 100, duration: 2 });
+
+    // 트윈 사이에 간격이나 지연 추가
+    // tl.to('.blue', { x: 600, duration: 2 });
+    // tl.to('.yellow', { x: 600, duration: 1, delay: 1 });
+    // tl.to('.green', { x: 600, duration: 1 });
+
+    // 위치 매개변수
+    // 정확한 타이밍으로 멋진 시퀀스를 구축할 수 있다!
+    // tl.to('.blue', { x: 50, duration: 2 }, 1); // 타임라인에서 정확히 1초 지점에서 시작 (절대적)
+    // tl.to('.yellow', { x: 50, duration: 1 }, '<'); // 이전 애니메이션의 시작 부분에 삽입
+    // tl.to('.green', { x: 50, duration: 1 }, '+=1'); // 타임라인 끝에서 1초 후에 삽입 (간격)
+    // tl.to('.pink', { x: 100 }, '-=1'); // 타임라인 끝에서 1초 전 (보통 이전에 삽입된 애니메이션/겹침)
+
+    // tl
+    //   .from('.blue', { y: 200, opacity: 0, duration: 0.4, ease: 'back.out' },3)
+    //   .from('.yellow', { y: 200, opacity: 0, duration: 0.4, ease: 'back.out' }, '+=2')
+    //   .from('.green', { y: 200, opacity: 0, duration: 0.4, ease: 'back.out' })
+    //   .from('.pink', { y: 200, opacity: 0, duration: 0.4, ease: 'back.out' })
+    //   .from('.purple', { y: 200, opacity: 0, duration: 0.4, ease: 'back.out' });
+
+    // 타임라인 기본값
+    // const tl = gsap.timeline({ defaults: { duration: 1 } })
+
+    // GSAP의 타임라인 인스턴스 생성
+    const tl = gsap.timeline({ repeat: -1, repeatDelay: 1, yoyo: true });
+
+    tl.from('.blue', { y: 200, opacity: 0, duration: 0.4, ease: 'back.out' }) // 0s
+      .from('.purple', { y: 200, opacity: 0, duration: 0.4, ease: 'back.out' }, '<')
+      .from('.yellow', { y: -200, opacity: 0, duration: 0.4, ease: 'back.out' }, '-=0.3')
+      .from('.pink', { y: -200, opacity: 0, duration: 0.4, ease: 'back.out' }, '<')
+      .from('.green', { y: 200, opacity: 0, duration: 0.4, ease: 'back.out' }, 0 + 0.3);
+  }
+
+  // setTimeout(animate, 800);
 })();
