@@ -58,15 +58,41 @@ button {
   background-color: var(--color, #e1377e);
   border-radius: var(--radius, 4px);
 
-  &.red { --color: var(--red) }
-  &.orange { --color: var(--orange) }
-  &.yellow { --color: var(--yellow) }
-  &.yellowgreen { --color: var(--yellowgreen) }
-  &.green { --color: var(--green) }
-  &.cyan { --color: var(--cyan) }
-  &.blue { --color: var(--blue) }
-  &.deepblue { --color: var(--deepblue) }
-  &.purple { --color: var(--purple) }
-  &.violet { --color: var(--violet) }
-  &.pink { --color: var(--pink) }
+  &.red {
+    --color: var(--red);
+  }
+  &.orange {
+    --color: var(--orange);
+  }
+  &.yellow {
+    --color: var(--yellow);
+  }
+  &.yellowgreen {
+    --color: var(--yellowgreen);
+  }
+  &.green {
+    --color: var(--green);
+  }
+  &.cyan {
+    --color: var(--cyan);
+  }
+  &.blue {
+    --color: var(--blue);
+  }
+  &.deepblue {
+    --color: var(--deepblue);
+  }
+  &.purple {
+    --color: var(--purple);
+  }
+  &.violet {
+    --color: var(--violet);
+  }
+  &.pink {
+    --color: var(--pink);
+  }
+}
+
+.canvas {
+  border: 4px solid var(--white);
 }
