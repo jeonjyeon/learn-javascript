@@ -197,6 +197,17 @@
             }
           },
           ease: 'power4.out',
+
+          // Callbacks
+          onStart: () => {
+            console.log('start');
+          },
+          onUpdate: () => {
+            console.log('update');
+          },
+          onComplete: () => {
+            console.log('complete');
+          },
         });
       }
     });
