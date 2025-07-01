@@ -235,7 +235,7 @@
 };
 
 // GASP -TimeLine
-(() => {
+() => {
   function animate() {
     // const tween = gsap.to('.box:first-of-type', {})
     // console.log(tween)
@@ -268,14 +268,99 @@
     // const tl = gsap.timeline({ defaults: { duration: 1 } })
 
     // GSAP의 타임라인 인스턴스 생성
-    const tl = gsap.timeline({ repeat: -1, repeatDelay: 1, yoyo: true });
+    // const tl = gsap.timeline({ repeat: -1, repeatDelay: 1, yoyo: true });
+    // tl.from('.blue', { y: 200, opacity: 0, duration: 0.4, ease: 'back.out' }) // 0s
+    //   .from('.purple', { y: 200, opacity: 0, duration: 0.4, ease: 'back.out' }, '<')
+    //   .from('.yellow', { y: -200, opacity: 0, duration: 0.4, ease: 'back.out' }, '-=0.3')
+    //   .from('.pink', { y: -200, opacity: 0, duration: 0.4, ease: 'back.out' }, '<')
+    //   .from('.green', { y: 200, opacity: 0, duration: 0.4, ease: 'back.out' }, 0 + 0.3);
 
-    tl.from('.blue', { y: 200, opacity: 0, duration: 0.4, ease: 'back.out' }) // 0s
-      .from('.purple', { y: 200, opacity: 0, duration: 0.4, ease: 'back.out' }, '<')
-      .from('.yellow', { y: -200, opacity: 0, duration: 0.4, ease: 'back.out' }, '-=0.3')
-      .from('.pink', { y: -200, opacity: 0, duration: 0.4, ease: 'back.out' }, '<')
-      .from('.green', { y: 200, opacity: 0, duration: 0.4, ease: 'back.out' }, 0 + 0.3);
+    const tl = gsap.timeline({
+      repeat: -1,
+      repeatDelay: 1,
+      yoyo: true,
+      defaults: { opacity: 0, duration: 1, ease: 'back.inOut(4)' },
+    });
+
+    tl.from('.blue', { y: 200 }) // 0s
+      .from('.purple', { y: 200 }, '<')
+      .from('.yellow', { y: -200 }, '-=0.3')
+      .from('.pink', { y: -200 }, '<')
+      .from('.green', { y: 200 }, 0 + 0.3);
+
+    // Single: Tween Animation
+    // gsap.from(['.blue', '.pink', '.red'], { y: 200 })
   }
 
-  // setTimeout(animate, 800);
+  // 0.5초 지난 후에 animate 함수 실행
+  setTimeout(animate, 500);
+};
+
+// GSAP - Callbacks & Controls
+(() => {
+  function animate() {
+    const tl = gsap
+      .timeline({
+        repeat: -1,
+        repeatDelay: 1,
+        yoyo: true,
+        defaults: { opacity: 0, duration: 1, ease: 'back.inOut(4)' },
+
+        // 타임라인 콜백 설정
+        onStart: () => {
+          console.log('start');
+        },
+        onUpdate: () => {
+          console.log('updating...');
+        },
+        onRepeat: () => {
+          console.log('repeat');
+        },
+        onComplete: () => {
+          console.log('completed');
+        },
+        onReverseComplete: () => {
+          console.log('reverse completed');
+        },
+      })
+      .from('.blue', { y: 200 }) // 0s
+      .from('.purple', { y: 200 }, '<')
+      .from('.yellow', { y: -200 }, '-=0.3')
+      .from('.pink', { y: -200 }, '<')
+      .from('.green', { y: 200 }, 0 + 0.3);
+
+    // 타임라인 인스턴스 제어
+    // pause()
+    tl.pause();
+
+    // 이벤트 위임
+    // 타임라인 컨트롤 (재생, 일시정지, 재개, 역재생, 재시작, 2배속, 0.5배속)
+    document.querySelector('header').addEventListener('click', (e) => {
+      const button = e.target.closest('button');
+
+      if (button.matches('[data-control="play"]')) {
+        tl.play();
+      }
+      if (button.matches('[data-control="pause"]')) {
+        tl.pause();
+      }
+      if (button.matches('[data-control="resume"]')) {
+        tl.resume();
+      }
+      if (button.matches('[data-control="reverse"]')) {
+        tl.reverse();
+      }
+      if (button.matches('[data-control="restart"]')) {
+        tl.restart();
+      }
+      if (button.matches('[data-control="timeScale-2"]')) {
+        tl.timeScale(2).play();
+      }
+      if (button.matches('[data-control="timeScale-0.5"]')) {
+        tl.timeScale(0.5).play();
+      }
+    });
+  }
+
+  setTimeout(animate, 200);
 })();
