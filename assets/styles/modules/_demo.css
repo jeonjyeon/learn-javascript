@@ -128,11 +128,11 @@ h1 {
   }
 
   /* CSS 트랜지션 트리거 - 속성 값 상태 변경 */
-  &:hover {
+  /* &:hover {
     background-color: var(--fill-hover);
   }
 
   &:active {
     scale: 1.2;
-  }
+  } */
 }
