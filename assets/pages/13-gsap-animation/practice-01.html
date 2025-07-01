@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>GSAP 애니메이션 라이브러리 시작하기</title>
+    <meta name="description" content="GSAP 애니메이션 라이브러리 사용법을 학습합니다." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap/dist/gsap.min.js"></script>
+    <script defer src="./main.js"></script>
+  </head>
+  <body>
+    <header hidden>
+      <button type="button" data-control="play">재생</button>
+      <button type="button" data-control="pause">일시정지</button>
+      <button type="button" data-control="resume">재개</button>
+      <button type="button" data-control="reverse">역재생</button>
+      <button type="button" data-control="restart">재시작</button>
+    </header>
+
+    <main>
+      <figure class="box"></figure>
+      <figure class="box yellow"></figure>
+
+      <!-- <svg viewBox="0 0 100 100">
+      <rect class="svgBox" fill="#28a92b" x="0" y="35" width="30" height="30" rx="2" />
+    </svg> -->
+
+      <!-- <output style="color: var(--white); font-size: 5rem">00</output> -->
+
+      <p hidden class="term">
+        <abbr title="GreenSock Animation Platform" style="color: var(--white)">GSAP</abbr>
+      </p>
+    </main>
+  </body>
+</html>
