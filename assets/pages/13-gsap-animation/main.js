@@ -151,7 +151,55 @@
     // gsap.from('.yellow', { y: 100, opacity: 0, duration: 1, delay: 0.5 });
     // gsap.from('.green', { y: 100, opacity: 0, duration: 1, delay: 1 });
 
-    gsap.from('.box', { y: 100, stagger: 0.1, ease: 'power4.out' });
+    // gsap.from('.box', { y: 100, stagger: 0.1, ease: 'power4.out' });
+
+    // 루프문 사용
+    // gsap.from('.box', {
+    //   y: 100,
+    //   opacity: 0,
+    //   stagger: 0.1,
+    //   ease: 'power1.out',
+    // });
+    // const boxes = document.querySelectorAll('.box');
+    // for (const box of boxes) {
+    //   box.addEventListener('click', () => {
+    //     gsap.from('.box', { y: 100, stagger: 0.1, ease: 'power4.out' });
+    //   });
+    // }
+
+    // 이벤트 위임(Event Delegation)
+    document.querySelector('main').addEventListener('click', (e) => {
+      if (e.target.matches('.box')) {
+        gsap.to('.box', {
+          y: -100,
+          opacity: 0,
+          scale: 1.2,
+          // stagger: (index, target /* list */) => {
+          //   console.log(index, target);
+          //   // return index * 0.2 // 0, 0.2, 0.4
+          //   // return index * 0.4 // 0, 0.4, 0.8
+
+          //   if (target.matches('.green')) {
+          //     return 1.5;
+          //   } else {
+          //     return index * 0.2;
+          //   }
+          // },
+          stagger: (index, target, list) => {
+            console.log(index, target);
+            // return index * 0.2 // 0, 0.2, 0.4
+            // return index * 0.4 // 0, 0.4, 0.8
+
+            if (index === list.length - 1) {
+              return 1;
+            } else {
+              return index * 0.2;
+            }
+          },
+          ease: 'power4.out',
+        });
+      }
+    });
   }
 
   setTimeout(animate, 800);
