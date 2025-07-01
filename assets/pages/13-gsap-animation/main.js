@@ -145,7 +145,7 @@
   }, 500);
 };
 
-(() => {
+() => {
   function animate() {
     // gsap.from('.blue', { y: 100, opacity: 0, duration: 1 });
     // gsap.from('.yellow', { y: 100, opacity: 0, duration: 1, delay: 0.5 });
@@ -210,6 +210,24 @@
           },
         });
       }
+    });
+  }
+
+  setTimeout(animate, 800);
+};
+
+(() => {
+  function animate() {
+    gsap.to('.box', {
+      rotation: 360,
+      duration: (index) => {
+        if (index === 0) {
+          return 2;
+        } else {
+          return 0.1;
+        }
+      },
+      stagger: 0.1,
     });
   }
 
