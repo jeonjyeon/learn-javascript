@@ -53,7 +53,7 @@
 };
 
 // || 논리합 논리 연산자 (OR)
-(() => {
+() => {
   const user = {
     name: '지훈',
     email: 'yamoo9@naver.com',
@@ -91,4 +91,51 @@
   function signOut() {
     console.log('로그아웃 되었습니다.');
   }
+};
+
+// 실습 1
+(() => {
+  // 영화 관람 가능 여부 확인
+  // 다음 조건을 모두 만족해야 영화관에 입장할 수 있습니다.
+  // - 18세 이상 관람 가능
+  // - 신분증 필수
+
+  // canWatchMovie 함수 코드를 작성하세요. (논리 연산자 활용)
+
+  function canWatchMovie(person) {
+    let result;
+
+    // 논리 연산자 식
+    // 논리곱(&&): 첫번째 거짓으로 평가되는 값을 찾아 반환
+    // 논리합(||): 첫번째 참으로 평가되는 값을 찾아 반환
+
+    // return (참인 값) && '관람 허용'
+    // result = (person.age > 17 && person.idCard) && '관람 허용'
+    if (person.age > 17 && person.idCard) {
+      result = '관람 허용';
+    } else {
+      result = '관람 불가';
+    }
+
+    return result;
+  }
+
+  const results = [canWatchMovie({ age: 21, idCard: true }), canWatchMovie({ age: 15, idCard: false })];
+
+  console.log(results); // ['관람 허용', '관람 불가']
+})();
+
+// 실습 2
+(() => {
+  function needUmbrella(condition) {
+    if (condition.isRaining || condition.forecastRain) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  const results = [needUmbrella({ isRaining: false, forecastRain: true }), needUmbrella({ isRaining: false, forecastRain: false })];
+
+  console.log(results); // [true, false]
 })();
