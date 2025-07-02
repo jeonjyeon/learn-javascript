@@ -25,8 +25,8 @@
   }
 };
 
-// && 논리 연산자
-(() => {
+// && 논리곱 논리 연산자 (AND)
+() => {
   let x, y;
 
   x = '엑—스'; // [true] or false -> Truthy
@@ -49,5 +49,46 @@
 
   function play() {
     return '우리는 다같이 논다.';
+  }
+};
+
+// || 논리합 논리 연산자 (OR)
+(() => {
+  const user = {
+    name: '지훈',
+    email: 'yamoo9@naver.com',
+    isSigned: !true,
+  };
+
+  // ----------------------------------------
+  // 조건문 (if...else 문)
+  if (!user.isSigned) {
+    signIn();
+  } else {
+    signOut();
+  }
+  // if (user.isSigned) signOut()
+  // else signIn()
+
+  // ----------------------------------------
+  // 조건식 (3항 연산자 표현식)
+  !user.isSigned ? signIn() : signOut();
+
+  // ----------------------------------------
+  // 논리 연산자 식 (&&, ||)
+
+  // user.isSigned // true or [false]
+  // || 연산자는 첫번째 Truthy 값을 찾는다. (&& 연산자의 반대)
+  user.isSigned || signIn();
+
+  // && 연산자는 첫번째 Falsey 값을 찾는다. (|| 연산자의 반대)
+  user.isSigned && signOut();
+
+  function signIn() {
+    console.log('로그인 합니다.');
+  }
+
+  function signOut() {
+    console.log('로그아웃 되었습니다.');
   }
 })();
