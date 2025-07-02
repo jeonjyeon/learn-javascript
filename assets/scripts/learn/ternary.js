@@ -160,11 +160,11 @@ const user = {
   }
 };
 
-// 실습
-(() => {
+// 실습 (조건식 : 조건이 적은 경우)
+() => {
   // 나이에 따라 책정된 입장료를 반환하는
   // 함수 코드를 조건 식을 사용해 작성하세요.
-  function getEntranceFeeByAge(age) {
+  function getEntranceFeeByAgeExpression(age) {
     // 조건이 많아지면 3항 연산자식은 읽기가 어렵다. (가독성 떨어짐)
     // return age < 13 ? 2000 : age >= 13 && age < 65 ? 5000 : 3000
 
@@ -182,7 +182,75 @@ const user = {
     //     : 3000
   }
 
-  const entranceFees = [getEntranceFeeByAge(21), getEntranceFeeByAge(10), getEntranceFeeByAge(73)];
+  const entranceFees1 = [
+    getEntranceFeeByAgeExpression(21),
+    getEntranceFeeByAgeExpression(10),
+    getEntranceFeeByAgeExpression(73)
+  ]
 
-  console.log(entranceFees); // [5000, 2000, 3000]
+  console.log(entranceFees1); // [5000, 2000, 3000]
+
+
+  function getEntranceFeeByAgeStatement(age) {
+    let price = 0
+
+    if (age < 13) {
+      price = 2000
+    } else if (age >= 13 && age < 65) {
+      price = 5000
+    } else {
+      price = 3000
+    }
+
+    return price
+  }
+
+  const entranceFees2 = [
+    getEntranceFeeByAgeStatement(21),
+    getEntranceFeeByAgeStatement(10),
+    getEntranceFeeByAgeStatement(73)
+  ] 
+
+  console.log(entranceFees2) // [5000, 2000, 3000]
+};
+
+
+// 실습 2 (조건문 : 조건이 많으니까)
+(() => {
+  
+  function getGradeByScore(score) {
+    let grade
+
+    // 90 ~ 100 A
+    if (score >= 90) {
+      grade = 'A'
+    } 
+    // 80 ~ 89 B
+    else if (score >= 80) {
+      grade = 'B'
+    }
+    // 70 ~ 79 C
+    else if (score >= 70) {
+      grade = 'C'
+    }
+    // 60 ~ 69 D
+    else if (score >= 60) {
+      grade = 'D'
+    }
+    // 0 ~ 59 F
+    else {
+      grade = 'F'
+    }
+
+    return grade
+  }
+
+  const grades = [
+    getGradeByScore(75),
+    getGradeByScore(82),
+    getGradeByScore(96),
+    getGradeByScore(50),
+  ] 
+
+  console.log(grades) // ['C', 'B', 'A', 'F']
 })();
