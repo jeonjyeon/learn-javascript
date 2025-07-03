@@ -50,7 +50,7 @@
         margin-block-end: 50px;
       }
     </style>
-    <script defer src="./assets/scripts/learn/54-destructuring-assignment.js"></script>
+    <script defer src="./assets/scripts/learn/55-default-parameters.js"></script>
   </head>
   <!-- <body style="background-color: burlywood">
     <h1 lang="en" style="color: lightyellow">JavaScript</h1> -->
@@ -103,6 +103,22 @@
 
     <section class="javascript-study-section">
       <h2 class="section-title">JavaScript Study Markup</h2>
+
+      <!-- default parameters -->
+      <header data-index="1">
+        <button type="button">button in header 1</button>
+      </header>
+
+      <header data-index="2">
+        <button type="button">button in header 2</button>
+      </header>
+
+      <div id="contoller" role="group" style="display: flex; gap: 4px; margin-block: 12px">
+        <button type="button" data-role="add-event">이벤트 추가</button>
+        <button type="button" data-role="remove-event">이벤트 제거</button>
+        <button type="button" data-role="tester">이벤트 추가 대기중...</button>
+        <button type="button" data-role="once-event">1회만 이벤트 설정</button>
+      </div>
     </section>
   </body>
 </html>
