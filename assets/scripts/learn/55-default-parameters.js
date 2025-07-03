@@ -97,7 +97,7 @@
 };
 
 // 선택적 매개변수 설정 (구조 분해 할당 + 기본 매개변수)
-(() => {
+() => {
   function createUser(name, age, { bio = '', friends = [] } = {}) {
     const user = {};
     user.name = name;
@@ -110,4 +110,66 @@
 
   const park = createUser('박선홍', 19);
   console.log(park);
-})();
+};
+
+() => {
+  const aLink = document.querySelector('h2 > a');
+
+  aLink.addEventListener('click', handleClick1);
+  aLink.addEventListener('click', handleClick2);
+
+  // 매개변수를 그대로 사용할 때
+  function handleClick1(e) {
+    // 브라우저 기본 작동 방지
+    e.preventDefault();
+
+    // const aElement = e.currentTarget
+    const { currentTarget: aElement } = e;
+
+    // 이벤트가 연결된 대상의 속성 가져오기
+    const relValue = e.currentTarget.getAttribute('rel');
+    console.log(relValue);
+
+    // 이벤트가 연결된 대상의 속성 설정하기
+    e.currentTarget.removeAttribute('rel');
+    e.currentTarget.setAttribute('lang', 'ko');
+    e.currentTarget.textContent = '자바스크립트';
+  }
+
+  // 매개변수를 구조 분해 할당했을 때
+  function handleClick2({ currentTarget: aElement, type }) {
+    console.log(type);
+
+    // preventDefault() // Uncaught TypeError: Illegal invocation
+
+    const relValue = aElement.getAttribute('rel');
+    console.log(relValue);
+
+    aElement.removeAttribute('rel');
+    aElement.setAttribute('lang', 'ko');
+    aElement.textContent = '자바스크립트';
+  }
+};
+
+() => {
+  /* global gsap */
+
+  // GSAP API
+  // gsap.to(target(s), x, y, duration, rotation, opacity, delay, repeat, yoyo, repeatDelay, ...)
+  gsap.set('h1', { opacity: 0 });
+
+  setTimeout(() => {
+    gsap.fromTo(
+      'h1',
+      /* vars options */
+      {
+        opacity: 0,
+        y: -100,
+      },
+      {
+        opacity: 1,
+        y: 100,
+      }
+    );
+  }, 500);
+};
