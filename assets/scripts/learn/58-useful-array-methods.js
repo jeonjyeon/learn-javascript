@@ -3,7 +3,7 @@
 // --------------------------------------------------------------------------
 
 // findIndex() 메서드
-(() => {
+() => {
   // Array의 .findIndex() 메서드
 
   const people = [
@@ -22,4 +22,17 @@
   });
 
   console.log(foundIndex);
+};
+
+// find() 메서드
+(() => {
+  const people = [
+    { id: 1, name: '지훈' },
+    { id: 2, name: '아름' },
+    { id: 3, name: '한영' },
+  ];
+
+  // .findIndex() 메서드와 유사하게 작동하지만, 인덱스(index) 대신 항목(item)을 반환
+  const hanyuoung = people.find((person) => person.name === '한영');
+  console.log(hanyuoung);
 })();
