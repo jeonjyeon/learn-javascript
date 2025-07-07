@@ -38,7 +38,7 @@
 };
 
 // filter() 메서드
-(() => {
+() => {
   const people = [
     { id: 1, name: '최지훈' },
     { id: 2, name: '박아름' },
@@ -54,4 +54,33 @@
 
   const unknownPersons = people.filter((p) => p.name === '이한준');
   console.log(unknownPersons);
+};
+
+// map() 메서드
+(() => {
+  const people = [
+    { id: 1, name: '지훈' },
+    { id: 2, name: '아름' },
+    { id: 3, name: '한영' },
+  ];
+
+  // 사람들을 순환해서 모두의 직업을 설정한 새 배열 반환 (원본 보존)
+  const newPeople = people.map((person) => {
+    // 이전 메모리 주소 상의 객체가 아닌, 새 객체 생성 (person 객체 복제)
+    const newPerson = { ...person };
+
+    // 이전의 사람에 새로운 데이터를 추가해서 반환
+    newPerson.name = '김' + newPerson.name;
+    newPerson.job = '프론트엔드 개발자';
+    return newPerson;
+  });
+
+  console.log(newPeople);
+  console.log(people);
+
+  const numbers = [2, 6, 8];
+  // const doubleNumbers = [4, 36, 64]
+  const doubleNumbers = numbers.map((n) => n ** 2);
+  console.log(doubleNumbers);
+  console.log(numbers);
 })();
