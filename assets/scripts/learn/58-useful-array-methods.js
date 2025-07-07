@@ -138,7 +138,7 @@
 };
 
 // 용도별 함수 작성 방법 비교: forEach() vs. map()
-(() => {
+() => {
   const list = ['하나', '둘', '셋'];
 
   const forEachResult = forEach(list, (item, index, list) => {
@@ -176,4 +176,34 @@
 
     return mapResult;
   }
+};
+
+// 배열 객체의 메서드 체이닝
+(() => {
+  const numbers = ['one', 'two', 'three'];
+
+  const doubleNumbers = numbers
+    .filter((n) => n !== 'one')
+    .map((n) => n.repeat(2))
+    .map((n) => n.toUpperCase());
+
+  console.log(doubleNumbers);
+
+  // const filterNumbers = numbers.filter(n => n > 1)
+  // console.log(filterNumbers) // [2, 3]
+
+  // const squartNumbers = filterNumbers.map(n => n ** 2)
+  // console.log(squartNumbers) // [4, 9]
 })();
+
+// GSAP 메서드 체이닝
+() => {
+  /* global gsap */
+
+  const tl = gsap.timeline({
+    defaults: { opacity: 0, y: -100, scale: 0 },
+  });
+
+  tl.to('h1', { y: 0, scale: 1 }) // Timeline { to, from, set, call, ... }
+    .to('p', { y: 0, scale: 1 }, '+=0.4');
+};
