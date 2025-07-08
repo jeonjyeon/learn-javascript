@@ -46,7 +46,7 @@ function getKiwiCount(list) {
 //    - Object.values()
 //    - Object.keys()
 // --------------------------------------------------------------------------
-(() => {
+() => {
   const numbers = [10, 11, 12, 13, 14, 15];
 
   // 13의 인덱스 가져오기
@@ -225,5 +225,68 @@ function getKiwiCount(list) {
       }, {});
 
     console.log(subjectCountObject);
+  })();
+};
+
+// --------------------------------------------------------------------------
+// 📌 실습
+// --------------------------------------------------------------------------
+
+// 출석 체크된 학생 수 세기
+// 출석한 학생만 골라서 출석자 수를 계산해 콘솔 패널에 출력해보세요.
+() => {
+  const students = [
+    { id: 1, name: '김지훈', email: 'jihun.kim@example.com', isPresent: true },
+    { id: 2, name: '박아름', email: 'areum.park@example.com', isPresent: false },
+    { id: 3, name: '이민수', email: 'minsu.lee@example.com', isPresent: true },
+    { id: 4, name: '최수빈', email: 'subin.choi@example.com', isPresent: true },
+    { id: 5, name: '정하늘', email: 'haneul.jung@example.com', isPresent: false },
+    { id: 6, name: '윤다현', email: 'dahyun.yoon@example.com', isPresent: true },
+    { id: 7, name: '한지민', email: 'jimin.han@example.com', isPresent: false },
+    { id: 8, name: '오세영', email: 'seyoung.oh@example.com', isPresent: true },
+    { id: 9, name: '서윤호', email: 'yunho.seo@example.com', isPresent: true },
+    { id: 10, name: '배예진', email: 'yejin.bae@example.com', isPresent: false },
+  ];
+
+  // console.log(students);
+
+  // 1. 명령형 코드
+  () => {};
+
+  // 2. 선언적 코드
+  (() => {
+    const attendance = students.filter(({ isPresent }) => isPresent === true);
+    // const attendance = students.filter(({ isPresent }) => isPresent);
+
+    console.log(attendance.length);
+  })();
+};
+
+// 판매 가능한 상품명 출력
+// 재고가 있는 상품만 걸러내 상품명을 콘솔 패널에 출력하세요.
+(() => {
+  const products = [
+    { id: 1, name: '파운데이션', stock: 5, price: 32000 },
+    { id: 2, name: '블러셔', stock: 0, price: 17000 },
+    { id: 3, name: '아이섀도우', stock: 12, price: 22000 },
+    { id: 4, name: '립스틱', stock: 3, price: 15000 },
+    { id: 5, name: '브러시 세트', stock: 7, price: 28000 },
+    { id: 6, name: '아이라이너', stock: 4, price: 13000 },
+    { id: 7, name: '마스카라', stock: 2, price: 16000 },
+    { id: 8, name: '컨실러', stock: 6, price: 21000 },
+    { id: 9, name: '하이라이터', stock: 0, price: 18000 },
+    { id: 10, name: '쿠션 팩트', stock: 8, price: 35000 },
+  ];
+
+  // console.log(products);
+
+  // 1. 명령형 코드
+  () => {};
+
+  // 2. 선언적 코드
+  (() => {
+    products
+      .filter(({ stock }) => stock > 0)
+      .forEach(({ name }) => console.log(name));
   })();
 })();
