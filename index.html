@@ -30,16 +30,6 @@
         background-color: lightyellow;
       }
 
-      h1 {
-        position: relative;
-        color: tan;
-
-        &::after {
-          content: ' ❤️';
-          position: absolute;
-        }
-      }
-
       .section-title {
         font-size: 1.5rem;
         color: #4a3f35;
@@ -47,17 +37,59 @@
         border-bottom: 2px solid #ddd;
         text-align: center;
       }
-
-      .javascript-study-section {
-        margin-block-end: 50px;
-      }
     </style>
-    <script defer src="./assets/scripts/learn/66-add-element-to-dom.js"></script>
+    <script defer src="./assets/scripts/learn/67-add-elements-to-dom.js"></script>
   </head>
   <!-- <body style="background-color: burlywood">
     <h1 lang="en" style="color: lightyellow">JavaScript</h1> -->
   <body>
-    <h1 lang="en">JavaScript</h1>
+    <article>
+      <h2>라면 끓이는 방법</h2>
+      <!-- before -->
+      <ol class="ramen-cooking-recipe">
+        <!-- prepend -->
+        <li>면이 익으면 불을 끄고 그릇에 옮깁니다.</li>
+        <li>물을 냄비에 붓고 끓입니다 (약 500ml).</li>
+        <li>물이 끓으면 스프를 먼저 넣습니다.</li>
+        <li>취향에 따라 파, 계란, 치즈 등을 추가합니다.</li>
+        <li>호호 불며 맛있게 먹습니다.</li>
+        <!-- append -->
+      </ol>
+      <!-- after -->
+    </article>
+    <div hidden>
+      <button type="button">위치 변경</button>
+      <div style="display: flex; justify-content: space-between; gap: 20px">
+        <ol class="fruits-i-like">
+          <li>바나나</li>
+          <li>파인애플</li>
+          <li>오렌지</li>
+        </ol>
+        <ol class="fruits-i-dont-like">
+          <li>스트로베리</li>
+        </ol>
+      </div>
+      <div class="parent"></div>
+      <!-- default parameters -->
+      <header data-index="1">
+        <button type="button">button in header 1</button>
+      </header>
+
+      <header data-index="2">
+        <button type="button">button in header 2</button>
+      </header>
+
+      <div id="contoller" role="group" style="display: flex; gap: 4px; margin-block: 12px">
+        <button type="button" data-role="add-event">이벤트 추가</button>
+        <button type="button" data-role="remove-event">이벤트 제거</button>
+        <button type="button" data-role="tester">이벤트 추가 대기중...</button>
+        <button type="button" data-role="once-event">1회만 이벤트 설정</button>
+      </div>
+
+      <h2 id="static">
+        <a href="https://developer.mozilla.org/ko/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer" lang="en"> JavaScript </a>
+      </h2>
+    </div>
     <section>
       <h2 class="section-title">실습</h2>
       <ul class="practice-list">
@@ -114,54 +146,6 @@
         <li><a href="./assets/pages/23-change-text-html/practice.html">텍스트 및 HTML 변경</a></li>
         <li><a href="./assets/pages/24-add-element-to-dom/practice.html">DOM에 요소 추가</a></li>
       </ul>
-    </section>
-
-    <section class="javascript-study-section">
-      <h2 class="section-title"><p>JavaScript Study Markup</p></h2>
-      <article>
-        <h2>라면 끓이는 방법</h2>
-        <ol class="ramen-cooking-recipe">
-          <li>면이 익으면 불을 끄고 그릇에 옮깁니다.</li>
-          <li>물을 냄비에 붓고 끓입니다 (약 500ml).</li>
-          <li>물이 끓으면 스프를 먼저 넣습니다.</li>
-          <!-- 동적으로 요소 추가 -->
-          <li>취향에 따라 파, 계란, 치즈 등을 추가합니다.</li>
-          <li>호호 불며 맛있게 먹습니다.</li>
-        </ol>
-      </article>
-      <div hidden>
-        <button type="button">위치 변경</button>
-        <div style="display: flex; justify-content: space-between; gap: 20px">
-          <ol class="fruits-i-like">
-            <li>바나나</li>
-            <li>파인애플</li>
-            <li>오렌지</li>
-          </ol>
-          <ol class="fruits-i-dont-like">
-            <li>스트로베리</li>
-          </ol>
-        </div>
-        <div class="parent"></div>
-        <!-- default parameters -->
-        <header data-index="1">
-          <button type="button">button in header 1</button>
-        </header>
-
-        <header data-index="2">
-          <button type="button">button in header 2</button>
-        </header>
-
-        <div id="contoller" role="group" style="display: flex; gap: 4px; margin-block: 12px">
-          <button type="button" data-role="add-event">이벤트 추가</button>
-          <button type="button" data-role="remove-event">이벤트 제거</button>
-          <button type="button" data-role="tester">이벤트 추가 대기중...</button>
-          <button type="button" data-role="once-event">1회만 이벤트 설정</button>
-        </div>
-
-        <h2 id="static">
-          <a href="https://developer.mozilla.org/ko/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer" lang="en"> JavaScript </a>
-        </h2>
-      </div>
     </section>
   </body>
 </html>
