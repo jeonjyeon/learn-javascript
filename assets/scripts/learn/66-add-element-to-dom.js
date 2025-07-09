@@ -3,7 +3,7 @@
 // --------------------------------------------------------------------------
 
 // 요소 동적 생성 (dynamic creating element node)
-(() => {
+() => {
   // 동적 생성된 요소들을 마운트할 부모 요소
   const parentElement = document.querySelector('.parent');
 
@@ -39,4 +39,15 @@
 
   // DOM에 추가 (삽입)
   parentElement.appendChild(tableElement);
+};
+
+// 라면 레시피 완성하기~!!~!!
+(() => {
+  const ol = document.querySelector('.ramen-cooking-recipe');
+
+  // <li> 요소를 생성한 다음 "맛있게 먹습니다!" 텍스트 콘텐츠 추가
+  const listItem = document.createElement('li');
+  listItem.textContent = '맛있게 먹습니다!';
+  // 생성된 <li> 요소를 ol 참조 요소 내부 마지막 자식으로 삽입
+  ol.appendChild(listItem);
 })();
