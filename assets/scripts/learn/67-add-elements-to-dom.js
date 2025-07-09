@@ -50,12 +50,34 @@
   list.append(...appendElements);
 
   // before()
+  const beforeElements = [createElement('li', 'before content 1'), createElement('li', 'before content 2')];
+
+  const beforeTargetElement = list.children[4];
+  beforeTargetElement.before(...beforeElements);
 
   // after()
+  const afterElements = [createElement('li', 'after content A'), createElement('li', 'after content Z')];
+
+  const afterTargetElement = list.children[6];
+  afterTargetElement.after(...afterElements);
 
   // insertAdjacentElement()
+  // const elementInfo = {
+  //   position: 'beforebegin',
+  //   element: createElement('p', '제목 1 앞에 삽입됨. 즉, 이전 형제 요소가 됨'),
+  // };
+
+  const elementInfo = {
+    position: 'afterend',
+    element: createElement('span', '인접한 요소로 삽입(insert adjacent element)'),
+  };
+  const h1 = document.querySelector('h1');
+  h1.insertAdjacentElement(elementInfo.position, elementInfo.element);
 
   // insertAdjacentHTML()
+  const h2 = document.querySelector('h2');
+  h2.insertAdjacentHTML('afterbegin', `<strong>💡</strong>`);
+  h2.insertAdjacentHTML('beforeend', `<strong>🍜</strong>`);
 
   /**
    * DOM에 추가될 수 있는 요소 생성 함수
