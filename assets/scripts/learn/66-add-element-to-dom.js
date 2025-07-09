@@ -42,7 +42,7 @@
 };
 
 // 라면 레시피 완성하기~!!~!!
-(() => {
+() => {
   const ol = document.querySelector('.ramen-cooking-recipe');
 
   // <li> 요소를 생성한 다음 "맛있게 먹습니다!" 텍스트 콘텐츠 추가
@@ -50,4 +50,18 @@
   listItem.textContent = '맛있게 먹습니다!';
   // 생성된 <li> 요소를 ol 참조 요소 내부 마지막 자식으로 삽입
   ol.appendChild(listItem);
+};
+
+// 요소 위치 변경 (appendChild 활용)
+(() => {
+  const button = document.querySelector('button');
+  const section = button.nextElementSibling;
+  const [likeFruitsList, unlikeFruitsList] = section.children; // HTMLCollection
+
+  button.addEventListener('click', () => {
+    // 좋아하는 과일 목록의 첫번째 항목을
+    const firstFruit = likeFruitsList.firstElementChild;
+    // 좋아하지 않는 과일 목록의 마지막 항목으로 위치 이동
+    unlikeFruitsList.appendChild(firstFruit);
+  });
 })();
