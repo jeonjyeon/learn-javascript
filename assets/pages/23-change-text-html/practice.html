@@ -116,6 +116,22 @@
           <h2>박상현</h2>
           <p>프론트엔드 개발자</p>
         `;
+
+        const practice = document.getElementById('practice2');
+        const button = practice.querySelector('button');
+        const profileCard = practice.querySelector('.profile-card');
+
+        button.addEventListener(
+          'click',
+          () => {
+            profileCard.innerHTML = cardTemplate;
+
+            // 해당 코드는 한 번만 작동하는 것이 맞기 때문에
+            // 아래의 코드를 작성하거나, once: true를 설정해준다.
+            // button.disabled = true;
+          },
+          { once: true }
+        );
       })();
     </script>
   </body>
