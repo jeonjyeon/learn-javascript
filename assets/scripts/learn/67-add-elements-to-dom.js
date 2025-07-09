@@ -2,29 +2,8 @@
 // 📌 DOM에 여러 요소 추가
 // --------------------------------------------------------------------------
 
-// 여러 요소를 DOM에 추가할 때,
-// 렌더링 횟수가 증가하는 코드 예시
-() => {
-  // <li>면이 익으면 불을 끄고 그릇에 옮깁니다.</li>
-  // <li>물을 냄비에 붓고 끓입니다 (약 500ml).</li>
-  // <li>물이 끓으면 스프를 먼저 넣습니다.</li>
-  // <li>취향에 따라 파, 계란, 치즈 등을 추가합니다.</li>
-  // <li>호호 불며 맛있게 먹습니다.</li>
-
-  const recipeList = ['면이 익으면 불을 끄고 그릇에 옮깁니다.', '물을 냄비에 붓고 끓입니다 (약 500ml).', '물이 끓으면 스프를 먼저 넣습니다.', '취향에 따라 파, 계란, 치즈 등을 추가합니다.', '호호 불며 맛있게 먹습니다.'];
-
-  const listElement = document.querySelector('.ramen-cooking-recipe');
-
-  // 렌더링 횟수 == 비용 => 렌더링을 줄일 수 있으면 줄이는 것이 좋다
-  for (const recipe of recipeList) {
-    const item = document.createElement('li');
-    item.textContent = recipe;
-    listElement.appendChild(item);
-  }
-};
-
 // 요소(Element) 객체의 유용한 메서드
-(() => {
+() => {
   const list = document.querySelector('.ramen-cooking-recipe');
 
   // prepend()
@@ -90,4 +69,49 @@
     element.textContent = textContent;
     return element;
   }
+};
+
+// 여러 요소를 DOM에 추가할 때
+// 렌더링 횟수가 증가하는 코드 예시
+() => {
+  // <li>면이 익으면 불을 끄고 그릇에 옮깁니다.</li>
+  // <li>물을 냄비에 붓고 끓입니다 (약 500ml).</li>
+  // <li>물이 끓으면 스프를 먼저 넣습니다.</li>
+  // <li>취향에 따라 파, 계란, 치즈 등을 추가합니다.</li>
+  // <li>호호 불며 맛있게 먹습니다.</li>
+
+  const recipeList = ['면이 익으면 불을 끄고 그릇에 옮깁니다.', '물을 냄비에 붓고 끓입니다 (약 500ml)', '물이 끓으면 스프를 먼저 넣습니다.', '취향에 따라 파, 계란, 치즈 등을 추가합니다.', '호호 불며 맛있게 먹습니다.'];
+
+  const listElement = document.querySelector('.ramen-cooking-recipe');
+
+  for (const recipe of recipeList) {
+    const item = document.createElement('li');
+    item.textContent = recipe;
+    listElement.appendChild(item);
+  }
+};
+
+// 여러 요소를 DOM에 추가할 때
+// innerHTML 사례
+(() => {
+  const recipeList = ['면이 익으면 불을 끄고 그릇에 옮깁니다.', '물을 냄비에 붓고 끓입니다 (약 500ml)', '물이 끓으면 스프를 먼저 넣습니다.', '취향에 따라 파, 계란, 치즈 등을 추가합니다.', '호호 불며 맛있게 먹습니다.'];
+
+  // HTML 템플릿 문자열 생성
+  const recipeHTMLTemplate = recipeList
+    .map((content) => {
+      return `<li>${content}</li>`;
+    })
+    .join('');
+
+  // console.log(recipeHTMLTemplate)
+
+  const listElement = document.querySelector('.ramen-cooking-recipe');
+
+  // innerHTML
+  // before or after
+  listElement.innerHTML = recipeHTMLTemplate + listElement.innerHTML;
+
+  // insertAdjacentHTML()
+  // before or after or prepend or append
+  // listElement.insertAdjacentHTML('afterbegin', recipeHTMLTemplate)
 })();
