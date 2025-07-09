@@ -98,9 +98,27 @@
 
     <script>
       // 실습 2. 다른 요소 앞에 추가
-      // "면을 넣고" 앞에 추가 버튼을 누르면 "물이 끓으면 스프를 넣습니다." 항목을
-      // "면을 넣고" 항목 앞에 추가하는 코드를 작성합니다.
-      (() => {})();
+      // '"면을 넣고" 앞에 추가 버튼'을 누르면 "물이 끓으면 스프를 넣습니다." 항목을
+      // "면을 넣고..." 항목 앞에 추가하는 코드를 작성합니다.
+      (() => {
+        const practice = document.getElementById('practice2');
+        const recipeList = practice.querySelector('.recipe-list');
+
+        // 이벤트 위임
+        practice.addEventListener('click', ({ target }) => {
+          // 가장 가까운 선택자와 일치하는 요소를 찾기 (버튼 포함)
+          const button = target.closest('button');
+          // 빠른 반환
+          if (!button) return;
+
+          // 동적 요소 생성
+          const recipeItem = document.createElement('li');
+          recipeItem.textContent = '물이 끓으면 스프를 넣습니다.';
+
+          // 특정 요소 앞에 동적 생성된 요소 삽입
+          recipeList.insertBefore(recipeItem, recipeList.lastElementChild);
+        });
+      })();
     </script>
 
     <hr />
