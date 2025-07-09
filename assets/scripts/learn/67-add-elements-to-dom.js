@@ -93,7 +93,7 @@
 
 // 여러 요소를 DOM에 추가할 때
 // innerHTML 사례
-(() => {
+() => {
   const recipeList = ['면이 익으면 불을 끄고 그릇에 옮깁니다.', '물을 냄비에 붓고 끓입니다 (약 500ml)', '물이 끓으면 스프를 먼저 넣습니다.', '취향에 따라 파, 계란, 치즈 등을 추가합니다.', '호호 불며 맛있게 먹습니다.'];
 
   // HTML 템플릿 문자열 생성
@@ -114,4 +114,26 @@
   // insertAdjacentHTML()
   // before or after or prepend or append
   // listElement.insertAdjacentHTML('afterbegin', recipeHTMLTemplate)
+};
+
+// 여러 요소를 DOM에 추가할 때
+// DocumentFragment 활용 사례
+(() => {
+  const listElement = document.querySelector('.ramen-cooking-recipe');
+
+  // 문서 조각 객체 생성
+  // 실제 DOM과 유사 (사용자가 보는 문서가 아닌, 다른 공간)
+  const fragment = document.createDocumentFragment();
+  console.dir(fragment);
+
+  const recipeList = ['면이 익으면 불을 끄고 그릇에 옮깁니다.', '물을 냄비에 붓고 끓입니다 (약 500ml)', '물이 끓으면 스프를 먼저 넣습니다.', '취향에 따라 파, 계란, 치즈 등을 추가합니다.', '호호 불며 맛있게 먹습니다.'];
+
+  recipeList.forEach((recipe) => {
+    const recipeItem = document.createElement('li');
+    recipeItem.textContent = recipe;
+    fragment.appendChild(recipeItem);
+  });
+
+  // DocumentFragment은 실제로 DOM에 추가하기 전까지는 렌더링이 전혀 발생하지 않음
+  listElement.append(...fragment.children);
 })();
