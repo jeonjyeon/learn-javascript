@@ -67,7 +67,7 @@
 };
 
 // 특정 요소 앞에 생성된 요소 삽입
-(() => {
+() => {
   const ramenCookingRecipe = document.querySelector('.ramen-cooking-recipe');
   // const [,,targetElement] = ramenCookingRecipe.children
   const targetRecipe = ramenCookingRecipe.children[2];
@@ -81,4 +81,20 @@
 
   // 동적 생성된 요소를 목표 요소 앞에 삽입
   targetRecipe.parentElement.insertBefore(insertRecipe, targetRecipe);
+};
+
+// 문서에 존재하는 요소를 목표 요소 앞에 추가
+(() => {
+  const ramenCookingRecipe = document.querySelector('.ramen-cooking-recipe');
+
+  // 삽입할 요소 찾기
+  const insertRecipe = ramenCookingRecipe.firstElementChild;
+  console.log(insertRecipe);
+
+  // 대상(목표) 요소 찾기
+  const targetRecipe = ramenCookingRecipe.lastElementChild;
+  console.log(targetRecipe);
+
+  // 삽입할 요소를 대상 앞에 삽입
+  ramenCookingRecipe.insertBefore(insertRecipe, targetRecipe);
 })();
