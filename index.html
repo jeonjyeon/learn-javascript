@@ -25,6 +25,8 @@
     <script src="./assets/scripts/utils/attr.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap/dist/GSDevTools.min.js"></script>
+    <!-- 살균제(Sanitazer) 사용 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.6/purify.min.js"></script>
     <style>
       body {
         background-color: lightyellow;
@@ -38,12 +40,18 @@
         text-align: center;
       }
     </style>
-    <script defer src="./assets/scripts/learn/70-form-field-event.js"></script>
+    <script defer src="./assets/scripts/learn/71-xss-sanitize.js"></script>
   </head>
   <!-- <body style="background-color: burlywood">
     <h1 lang="en" style="color: lightyellow">JavaScript</h1> -->
   <body>
     <h1 lang="en">JavaScript</h1>
+
+    <form style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px">
+      <label for="text">텍스트</label>
+      <textarea id="text" name="text" cols="40" rows="6"></textarea>
+      <button type="submit">출력</button>
+    </form>
 
     <form class="form">
       <p>어떤 과일을 좋아하세요? (하나만 체크 가능)</p>
