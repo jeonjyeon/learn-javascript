@@ -38,13 +38,55 @@
         text-align: center;
       }
     </style>
-    <script defer src="./assets/scripts/learn/69-switch-statement.js"></script>
+    <script defer src="./assets/scripts/learn/70-form-field-event.js"></script>
   </head>
   <!-- <body style="background-color: burlywood">
     <h1 lang="en" style="color: lightyellow">JavaScript</h1> -->
   <body>
     <h1 lang="en">JavaScript</h1>
-    <form action="/subscribe" method="POST">
+
+    <form class="form">
+      <p>어떤 과일을 좋아하세요? (하나만 체크 가능)</p>
+      <div class="radio-button">
+        <input type="radio" name="favorite-fruit" id="apple" value="사과" />
+        <label for="apple">🍎 사과</label>
+      </div>
+      <div class="radio-button">
+        <input type="radio" name="favorite-fruit" id="grape" value="포도" checked />
+        <label for="grape">🍇 포도</label>
+      </div>
+      <div class="radio-button">
+        <input type="radio" name="favorite-fruit" id="lemon" value="레몬" />
+        <label for="lemon">🍋 레몬</label>
+      </div>
+      <div class="radio-button">
+        <input type="radio" name="favorite-fruit" id="none" value="없음" />
+        <label for="none">😝 없음</label>
+      </div>
+
+      <div class="textarea" style="display: flex; flex-direction: column; gap: 8px; margin-block: 20px">
+        <label for="comment">댓글</label>
+        <textarea id="comment" name="comment" placeholder="댓글을 작성해주세요." cols="30" rows="5"></textarea>
+      </div>
+    </form>
+
+    <!-- <form class="form">
+      <p>어떤 과일을 좋아하세요?</p>
+      <div class="checkbox">
+        <input type="checkbox" name="apple" id="apple" value="사과" checked />
+        <label for="apple">🍎 사과</label>
+      </div>
+      <div class="checkbox">
+        <input type="checkbox" name="grape" id="grape" />
+        <label for="grape">🍇 포도</label>
+      </div>
+      <div class="checkbox">
+        <input type="checkbox" name="lemon" id="lemon" checked />
+        <label for="lemon">🍋 레몬</label>
+      </div>
+    </form> -->
+
+    <!-- <form action="/subscribe" method="POST">
       <div>
         <label for="email">이메일</label>
         <input type="email" name="email" id="email" placeholder="user@example.com" />
@@ -54,40 +96,8 @@
         <input type="text" name="contents" id="contents" placeholder="구독 메시지" />
       </div>
       <button type="submit">구독</button>
-    </form>
+    </form> -->
 
-    <script>
-      const form = document.querySelector('form');
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        const form = e.currentTarget;
-
-        // 폼 요소 순환
-
-        // 방법 1.
-        // for (const element of form.elements) {
-        //   console.log(element);
-        // }
-
-        // 방법 2.
-        // Array.from(form.elements).forEach((element) => console.log(element));
-        // const formElements = [...form.elements];
-        // formElements.forEach((element) => console.log(element));
-
-        // 폼 요소 찾는 다양한 방법
-        // console.log(form.email.value);
-        // console.log(form.contents.value);
-
-        // console.log(form.elements);
-        // console.log(form.elements[0]);
-        // console.log(form.elements.email);
-        // console.log(form.elements[1]);
-        // console.log(form.elements.contents);
-        // console.log(form.elements[2]);
-        // console.log(form.querySelector('button[type="submit"]'));
-      });
-    </script>
     <div hidden>
       <section>실습</section>
       <article>
