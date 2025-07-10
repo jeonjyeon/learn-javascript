@@ -66,6 +66,10 @@
 
         li {
           border-color: currentColor;
+
+          &:has([aria-disabled='true']) {
+            color: hsla(0 0% 15% / 0.5);
+          }
         }
 
         button {
@@ -78,8 +82,12 @@
           inline-size: 20px;
           block-size: 20px;
 
-          &:hover {
-            background-color: hsla(200 50% 50% / 20%);
+          &[aria-disabled='true'] {
+            cursor: not-allowed;
+          }
+
+          &:hover:not([aria-disabled='true']) {
+            background-color: hsla(200 50% 50% / 50%);
           }
 
           svg {
@@ -181,7 +189,68 @@
       // 각 리뷰의 "위로 이동" 버튼을 누르면 위 요소와 위치가 바뀌도록 구현합니다.
       // - 맨 위의 리뷰는 비활성 상태(`aria-disabled="true"`)로 전환
       // - 비활성 상태인 경우, 초점은 이동되나 작동되지 않아야 함
-      (() => {})();
+      (() => {
+        const practice = document.getElementById('practice2');
+        const reviews = practice.querySelector('.reviews');
+
+        reviews.addEventListener('click', ({ target }) => {
+          const button = target.closest('button');
+          if (!button) return; // 이벤트 대상에 button 요소가 없음
+
+          // 맨 위의 리뷰는 비활성 상태(`aria-disabled="true"`)
+          // 이벤트 대상이 버튼이 아닌 경우, 거짓으로 평가
+          // 옵셔널 체이닝(?.)을 사용해 대상이 null일 경우 거짓으로 평가
+          // 버튼 요소가 존재하지 않아도 안전하게 처리 (null 체크)
+          // 'aria-disabled' 속성이 'true'일 경우 해당 로직 건너뜀
+          // const isButtonDisabled = button.getAttribute('aria-disabled') === 'true';
+          const isButtonDisabled = button?.getAttribute('aria-disabled') === 'true';
+          if (isButtonDisabled) return; // 버튼이 비활성화된 상태
+
+          const willMoveItem = button.parentElement; // 이동할 리뷰
+          const targetItem = willMoveItem.previousElementSibling; // 이동할 리뷰의 이전 요소
+          if (!targetItem) return; // 대상 리뷰 목록 아이템이 없을 경우 함수 종료
+
+          // before 사용
+          () => {
+            targetItem.before(willMoveItem);
+          };
+
+          // 제거된 요소를 targetItem 앞에
+          (() => {
+            const parent = willMoveItem.parentElement; // <ul class="reviews">
+            const removed = parent.removeChild(willMoveItem); // DOM에서 제거
+            parent.insertBefore(removed, targetItem);
+          })();
+
+          // // 이동요소가 가장 상위 형제인가?
+          // const isFirstMovedItem = !moveItem.previousElementSibling;
+
+          // // 이동된 요소가 가장 상위 형제라면
+          // if (isFirstMovedItem) {
+          //   // 이동된 요소의 버튼(= 사용자가 클릭한 버튼)의 비활성 상태로 전환
+          //   button.setAttribute('aria-disabled', 'true');
+          //   // 아래로 이동된 요소(= 대상 요소)의 버튼을 활성 상태로 전환
+          //   const targetItemButton = targetItem.querySelector('button');
+          //   targetItemButton.setAttribute('aria-disabled', 'false');
+          // }
+
+          // 대상 리뷰 목록 아이템의 버튼 찾기
+          const targetItemButton = targetItem.querySelector('button');
+
+          // 이동된 리뷰가 리뷰 목록의 첫 번째 위치에 도달했는지 판단
+          const willMoveItemIsFirst = willMoveItem === reviews.firstElementChild;
+          if (willMoveItemIsFirst) {
+            // 최상단에 도달한 리뷰 버튼은 비활성화 처리
+            button.setAttribute('aria-disabled', 'true');
+
+            // 바로 아래로 밀린 이전 리뷰 버튼은 활성화 처리
+            // targetItemButton이 존재하는지 체크 위해 옵셔널 체이닝 사용
+            targetItemButton?.setAttribute('aria-disabled', 'false');
+          }
+          // 리뷰 이동된 후에도 초점 유지
+          button.focus();
+        });
+      })();
     </script>
   </body>
 </html>
