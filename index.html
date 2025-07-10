@@ -47,7 +47,11 @@
     <form action="/subscribe" method="POST">
       <div>
         <label for="email">이메일</label>
-        <input type="email" name="email" id="email" placeholder="user@example.com" required />
+        <input type="email" name="email" id="email" placeholder="user@example.com" />
+      </div>
+      <div>
+        <label for="contents">콘텐츠</label>
+        <input type="text" name="contents" id="contents" placeholder="구독 메시지" />
       </div>
       <button type="submit">구독</button>
     </form>
@@ -57,14 +61,31 @@
       form.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        console.log('submitting');
+        const form = e.currentTarget;
 
-        // form.submit()
+        // 폼 요소 순환
 
-        // 서버와 데이터 통신
-        // 비동기(AJAX) 방식으로 처리
-        // XMLHttpRequest 객체 사용
-        // Promise 객체 사용
+        // 방법 1.
+        // for (const element of form.elements) {
+        //   console.log(element);
+        // }
+
+        // 방법 2.
+        // Array.from(form.elements).forEach((element) => console.log(element));
+        // const formElements = [...form.elements];
+        // formElements.forEach((element) => console.log(element));
+
+        // 폼 요소 찾는 다양한 방법
+        // console.log(form.email.value);
+        // console.log(form.contents.value);
+
+        // console.log(form.elements);
+        // console.log(form.elements[0]);
+        // console.log(form.elements.email);
+        // console.log(form.elements[1]);
+        // console.log(form.elements.contents);
+        // console.log(form.elements[2]);
+        // console.log(form.querySelector('button[type="submit"]'));
       });
     </script>
     <div hidden>
