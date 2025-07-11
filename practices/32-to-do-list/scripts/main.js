@@ -1,8 +1,23 @@
-/* global DOMPurify */
-
 (() => {
+  /* global DOMPurify */
+
   const todoListForm = document.querySelector('.todolist');
   const todoList = document.querySelector('.todolist__tasks');
+
+  // 할 일 제거 버튼 찾기
+  const removeButtons = todoList.querySelectorAll('button');
+  // 찾은 제거 버튼(들) 순환
+  removeButtons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+      // 할 일 제거 버튼 click 이벤트 리스너 추가 (개별)
+      const taskElement = e.currentTarget.closest('.task');
+
+      // 제거 방법 1
+      // taskElement.parentElement.removeChild(taskElement);
+      // 제거 방법 2
+      taskElement.remove();
+    });
+  });
 
   todoListForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -61,6 +76,11 @@
         </svg>
       </button>
     `);
+
+    // 이벤트 위임을 사용하지 않으면
+    // 생성된 <li> 안에서 제거 버튼 찾아서
+    // 버튼에 할 일 요소를 삭제하는 기능을 추가해야하기에
+    // 하나의 함수에 여러 기능이 들어가게 되니까 별루..
 
     // 생성된 새 할 일 요소 반환
     return taskElement;
