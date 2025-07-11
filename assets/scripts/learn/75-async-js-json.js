@@ -2,7 +2,7 @@
 // 📌 JSON (JavaScript Object Notation)
 // --------------------------------------------------------------------------
 
-(() => {
+() => {
   const macbookPro = {
     operatingSystem: 'macOS Sequoia 15.5(24F74)',
     processor: '2.4GHz 8core Intel Core i9',
@@ -53,4 +53,44 @@
   );
 
   console.log(notebookInfo);
+};
+
+(() => {
+  const request = new XMLHttpRequest();
+
+  request.open('GET', 'https://api.github.com/users/jeonjyeon/repos');
+
+  request.send();
+
+  request.addEventListener('load', ({ target: xhr }) => {
+    const repos = JSON.parse(xhr.response);
+    console.log(repos);
+
+    // 데이터 정리 (Data Massaging)
+    // - 저장소 이름(`name`)
+    // - 저장소 공개 여부(`private`)
+    // - 저장소 URL (`html_url`)
+
+    const massagedRepos = repos.map((repo) => {
+      return {
+        name: repo.name,
+        private: repo.private,
+        url: repo.html_url,
+      };
+    });
+
+    // const massagedRepos = repos.map((repo) => ({
+    //   name: repo.name,
+    //   private: repo.private,
+    //   url: repo.html_url,
+    // }))
+
+    // const massagedRepos = repos.map(({ name, private, html_url: url }) => ({
+    //   name,
+    //   private,
+    //   url,
+    // }))
+
+    console.log(massagedRepos);
+  });
 })();
