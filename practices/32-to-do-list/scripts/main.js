@@ -4,21 +4,22 @@
   const todoListForm = document.querySelector('.todolist');
   const todoList = document.querySelector('.todolist__tasks');
 
-  // 할 일 제거 버튼 찾기
-  const removeButtons = todoList.querySelectorAll('button');
-  // 찾은 제거 버튼(들) 순환
-  removeButtons.forEach((button) => {
-    button.addEventListener('click', (e) => {
-      // 할 일 제거 버튼 click 이벤트 리스너 추가 (개별)
-      const taskElement = e.currentTarget.closest('.task');
+  // // 할 일 제거 버튼 찾기
+  // const removeButtons = todoList.querySelectorAll('button');
+  // // 찾은 제거 버튼(들) 순환
+  // removeButtons.forEach((button) => {
+  //   button.addEventListener('click', (e) => {
+  //     // 할 일 제거 버튼 click 이벤트 리스너 추가 (개별)
+  //     const taskElement = e.currentTarget.closest('.task');
 
-      // 제거 방법 1
-      // taskElement.parentElement.removeChild(taskElement);
-      // 제거 방법 2
-      taskElement.remove();
-    });
-  });
+  //     // 제거 방법 1
+  //     // taskElement.parentElement.removeChild(taskElement);
+  //     // 제거 방법 2
+  //     taskElement.remove();
+  //   });
+  // });
 
+  // form 요소에 submit 이벤트 리스너 추가
   todoListForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -47,6 +48,19 @@
 
     // 폼 입력 필드 초기화
     form.reset();
+  });
+
+  // 이벤트 위임 사용해서
+  // 동적 생성된 할 일 요소의 삭제 기능이 처리되도록 구현
+  todoList.addEventListener('click', ({ currentTarget: list, target }) => {
+    const removeButton = target.closest('[aria-label="할 일 삭제"]');
+    if (!removeButton) return;
+    removeButton.closest('.task').remove();
+
+    // 할 일 목록 내부에 아무런 자식 요소가 없다면?
+    // <ul> 요소 내부에 공백이 없도록 구성
+    // 사용자에게 새 할 일 추가에 관한 안내 사항 표시
+    if (list.children.length === 0) list.innerHTML = '';
   });
 
   // 새로운 할 일 생성 함수
