@@ -30,6 +30,8 @@
   </head>
 
   <body>
+    <div id="practice1"></div>
+    <button type="button">애호박 추가</button>
     <script>
       // 실습 1. 장바구니 목록 생성
       // 장바구니(cart)에 담긴 물품 이름을 화면에 목록으로 출력하려 합니다.
@@ -37,8 +39,68 @@
       // - "애호박" 물품이 목록에 추가되도록 합니다. (고유 식별자 설정 필요)
       (() => {
         const cart = ['양파', '부추', '밀가루', '계란', '오징어'];
+
+        const generateUniqueId = (length = 5) =>
+          Math.random()
+            .toString(36)
+            .substring(2, length + 2);
+
+        // 고유 식별자인 id 속성을 포함하는 장바구니를 생성
+        // 암묵적 반환 (생성된 객체)
+        // const cartData = cart.map((itemName) => ({
+        //   id: generateUniqueId(7),
+        //   name: itemName,
+        // }))
+
+        // 명시적 반환 (생성된 객체)
+        const cartData = cart.map((name) => {
+          // 식별 가능한 고유 ID 생성
+          // const uniqueId = generateUniqueId(7) // 7자리 문자로 구성된 문자열 생성
+          const uniqueId = crypto.randomUUID();
+
+          // 상품 이름을 포함한 새 객체 생성
+          return {
+            id: uniqueId,
+            name,
+          };
+        });
+        console.log(cartData);
+
+        const practice = document.getElementById('practice1');
+        // 템플릿을 작성해서 practice1 요소 내부에 삽입
+        const cartTemplate = `
+                <ul class="cart">
+                  ${cartData.reduce((templateCode, { id, name }) => {
+                    return templateCode + `<li data-id="${id}">${name}</li>`;
+                  }, '')}
+                </ul>
+              `;
+        practice.innerHTML = cartTemplate;
+
+        const cartElement = practice.querySelector('.cart');
+        const button = practice.nextElementSibling;
+        button.addEventListener(
+          'click',
+          () => {
+            const newItem = document.createElement('li');
+            // newItem.dataset.id = generateUniqueId(7);
+            newItem.dataset.id = crypto.randomUUID();
+            newItem.textContent = '애호박';
+            cartElement.appendChild(newItem);
+          },
+          { once: true }
+        );
+
+        console.log(cartTemplate);
       })();
     </script>
+
+    <hr />
+
+    <div id="practice2">
+      <button type="button">임시 비밀번호 생성</button>
+      <output>임시 비밀번호 입니다.</output>
+    </div>
 
     <script>
       // 실습 2. 임시 비밀번호 생성기
@@ -47,11 +109,22 @@
       // - 버튼 클릭 시, 화면에 생성된 임시 비밀번호를 표시합니다.
       (() => {
         function generateTempPassword(length) {
-          // ...
+          return Math.random()
+            .toString(32)
+            .substring(2, 2 + length);
         }
 
-        const tempPassword = generateTempPassword(10);
-        console.log('임시 비밀번호 = %s', tempPassword); // '임시 비밀번호 = azrgj1cn55'
+        const practice = document.getElementById('practice2');
+        const button = practice.querySelector('button');
+        const output = button.nextElementSibling;
+
+        button.addEventListener('click', () => {
+          const tempPassword = generateTempPassword(10);
+          const template = `<p>${tempPassword}</p>`;
+          console.log('임시 비밀번호 = %s', tempPassword); // '임시 비밀번호 = azrgj1cn55'
+          // output.textContent = tempPassword;
+          output.innerHTML = template;
+        });
       })();
     </script>
   </body>
