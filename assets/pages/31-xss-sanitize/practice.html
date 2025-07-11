@@ -3,6 +3,7 @@
   <head>
     <title>크로스 사이트 스크립팅(XSS) & Sanitize</title>
     <link rel="icon" href="../../images/ecmascript-logo.png" />
+    <script src="https://unpkg.com/dompurify/dist/purify.min.js"></script>
     <style>
       [id^='practice'] {
         display: flex;
@@ -25,6 +26,17 @@
         margin-inline: 12px;
         border: 0;
         border-block-end: 1px solid #aaa;
+      }
+
+      [data-id='search-result'] {
+        ul {
+          &:empty + [data-info] {
+            display: block;
+          }
+        }
+        [data-info] {
+          display: none;
+        }
       }
     </style>
   </head>
@@ -60,7 +72,8 @@
 
           if (nameValue && commentValue) {
             const newComment = document.createElement('div');
-            newComment.innerHTML = `<p><strong>${nameValue}</strong> ${commentValue}</p>`;
+            // newComment.innerHTML = `<p><strong>${nameValue}</strong> ${commentValue}</p>`;
+            newComment.innerHTML = DOMPurify.sanitize(`<p><strong>${nameValue}</strong> ${commentValue}</p>`);
             comments.appendChild(newComment);
             form.reset();
           }
@@ -78,6 +91,8 @@
 
       <div data-id="search-result">
         <h4>검색 결과</h4>
+        <ul></ul>
+        <p data-info>검색 데이터가 없습니다.</p>
       </div>
     </div>
 
@@ -91,6 +106,38 @@
       (() => {
         // 검색 데이터
         const searchData = ['JavaScript 프로그래밍 기초', 'HTML과 CSS 웹 디자인', 'React 컴포넌트 개발', 'Node.js 서버 구축', '웹 보안과 XSS 방어'];
+
+        // 검색 폼 찾기
+        const searchForm = document.querySelector('[data-id="search-form"]');
+        const searchedResultArea = document.querySelector('[data-id="search-result"]');
+        const ul = document.querySelector('ul');
+
+        // 검색 폼에 submit 이벤트 리스너 추가
+        searchForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const form = e.currentTarget;
+          const searchTerm = form.search.value.trim().toLowerCase();
+
+          // 검색 데이터에서 입력 검색어가 포함된 항목 찾기
+          const searchedData = searchData.find((data) => data.toLowerCase().includes(searchTerm));
+
+          // 공백 입력 막기
+          if (!searchTerm) {
+            form.reset();
+            return;
+          }
+
+          // DOM 업데이트
+          if (searchedData) {
+            // 검색된 데이터가 있는 경우
+            const result = DOMPurify.sanitize(`<li>${searchedData}</li>`);
+            ul.insertAdjacentHTML('beforeend', result);
+          } else {
+            // 검색 데이터가 없는 경우
+            ul.innerHTML = '';
+          }
+          form.reset();
+        });
       })();
     </script>
   </body>
