@@ -40,7 +40,7 @@
 };
 
 // 리커젼 (recursion, 재귀(再歸): 자신을 다시 호출)
-(() => {
+() => {
   let count = 10;
 
   countDown();
@@ -73,4 +73,61 @@
   // for(let i = count; i > 0; i -= 1) {
   //   countDown()
   // }
+};
+
+// 쓰로틀링 (Throttling)
+// 특정 함수의 실행 빈도를 제한하는 방법으로
+// 스크롤 이벤트나, 창크기 조절 같은 빈번한 이벤트 처리에 유용합니다.
+(() => {
+  // throttle 함수 작성
+  function throttle(callback, delay = 400 /* 0.4s */) {
+    // 조건 처리를 위한 지역 변수
+    let timeout = null;
+
+    // 함수 내부에서 다른 함수 반환
+    // 이벤트 리스너로 추가되는 함수
+    return function (...args) {
+      // console.log(args) // [arg1, arg2, ..., argN]
+      if (!timeout) {
+        timeout = setTimeout(() => {
+          // throttle 함수 실행 과정에서 전달된 콜백 실행
+          callback(...args); // callback(arg1, arg2, ..., argN)
+          // timeout 초기화
+          timeout = null;
+        }, delay);
+      }
+    };
+  }
+
+  // 스크롤(scroll) 이벤트 ---------------------------------------------------
+  // 쓰로틀 사용 전
+  // window - 브라우저 환경에서의 전역 객체
+  // global - Node.js 환경에서의 전역 객체
+  // globalThis - 환경 통합적인 전역 객체
+
+  // 스크롤 할 때마다 콜백 실행
+  let noThrottleCount = 0;
+  function handleScrollNoThrottle() {
+    console.log(`%cnoThrottleCount = ${noThrottleCount++}`, 'color: red');
+  }
+  globalThis.addEventListener('scroll', handleScrollNoThrottle);
+
+  // 쓰로틀 조정으로 0.5초 간격으로 콜백 실행
+  let throttleCount = 0;
+  const handleScrollThrottle = throttle(() => {
+    console.log(`%cthrottleCount = ${throttleCount++}`, 'color: blue');
+  }, 200);
+  globalThis.addEventListener('scroll', handleScrollThrottle);
+
+  // 리사이즈(resize) 이벤트 ---------------------------------------------------
+  globalThis.addEventListener('resize', () => {
+    console.log(`%c${globalThis.innerWidth}`, 'color: hotpink');
+  });
+
+  globalThis.addEventListener(
+    'resize',
+    throttle(() => {
+      console.log('throttle', globalThis.innerWidth);
+    })
+  );
 })();
