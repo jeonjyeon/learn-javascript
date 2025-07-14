@@ -55,7 +55,7 @@
   console.log(notebookInfo);
 };
 
-(() => {
+() => {
   const request = new XMLHttpRequest();
 
   request.open('GET', 'https://api.github.com/users/jeonjyeon/repos');
@@ -92,5 +92,56 @@
     // }))
 
     console.log(massagedRepos);
+  });
+};
+
+// 리마인드
+(() => {
+  // 자신(계정)의 GitHub 저장소
+  // 비동기 통신으로 API 서버에 데이터 조회(GET)
+  const ENDPOINT = 'https://api.github.com/users/yamoo9';
+
+  // XMLHttpRequest 객체 생성
+  const request = new XMLHttpRequest();
+
+  // 생성된 XMLHttpRequest 객체의 open(method, endpoint) 어떤 방법으로 어디에 요청할 것인 구성
+  request.open('GET', ENDPOINT);
+
+  // 생성된 XMLHttpRequest 객체의 헤더(headers) 설정
+  request.setRequestHeader('Content-Type', 'application/json');
+
+  // 생성된 XMLHttpRequest 객체의 send() 요청 및 데이터 보내기
+  request.send(null);
+
+  // 생성된 XMLHttpRequest 객체의 load 이벤트 리스너 추가 (서버의 응답 감지)
+  request.addEventListener('load', (e) => {
+    const xhr = e.target;
+
+    console.log(xhr.status); // 200 OK
+    console.log(xhr.response); // JSON String
+
+    // JSON 문자열 -> JavaScript 객체 변환
+    let data = JSON.parse(xhr.response);
+    console.log(data); // JavaScript Object
+
+    // 데이터 정리
+    data = Object.entries(data).reduce((massgedObject, [key, value]) => {
+      switch (key) {
+        case 'bio':
+        case 'avatar_url':
+        case 'name':
+        case 'location':
+        case 'login':
+        case 'public_repos ':
+          massgedObject[key] = value;
+          break;
+      }
+
+      return massgedObject;
+    }, {});
+
+    console.log(data);
+
+    // 정리된 데이터를 통해 DOM 업데이트
   });
 })();
