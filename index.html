@@ -52,16 +52,18 @@
       <select name="category" aria-label="카테고리">
         <option value="">모든 상품</option>
         <option value="hats">모자</option>
+        <option value="sneakers">신발</option>
+        <option value="jackets">자켓</option>
+        <option value="mens">남성 의류</option>
+        <option value="womens">여성 의류</option>
       </select>
       <button type="submit">검색</button>
     </form>
-
+    <p>총 <span class="products-count">{000}</span>개의 상품을 찾았습니다.</p>
     <div hidden role="status" style="color: #073037; font-weight: 700; font-size: 1.45rem">데이터 로딩 중입니다...</div>
-
-    <ul class="products">
+    <ul class="products" style="display: grid; grid-template-columns: repeat(4, 1fr)">
       <li>{데이터 기반 리스트 렌더링}</li>
     </ul>
-
     <div role="alert" style="color: #db172b; font-weight: 700; font-size: 1.45rem" hidden>{오류 메시지 출력}</div>
 
     <main hidden>
