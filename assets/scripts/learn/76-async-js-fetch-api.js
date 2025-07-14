@@ -75,7 +75,7 @@
   // 12. 다음 .then() 메서드의 콜백 함수는 처리된 JS 객체를 전달받는다.
 };
 
-(() => {
+() => {
   // 비동기 자바스크립트를 사용해 서버와 비동기 통신(패칭: fetcing 요청/응답)
   const promise = fetch('https://api.github.com/users/jeonjyeon/repos');
 
@@ -123,4 +123,64 @@
 
   // 비동기 통신 이후, DOM 업데이트
   const reposList = document.querySelector('.repos-list');
+};
+
+(() => {
+  const reposList = document.querySelector('.repos-list');
+  const promise = fetch('https://api.github.com/users/yamoo9999/repos');
+
+  promise
+    .then((response) => {
+      if (!response.ok) {
+        // 오류를 생성해서 전달(던져라!)
+        throw new Error('알 수 없는 오류가 발생했습니다! ❌');
+      }
+
+      return response.json();
+    })
+    .then(messageTheData)
+    .then(generateTemplate)
+    .then(updateDOM)
+    .catch(catchError)
+    .finally(runFinally);
+
+  function messageTheData(data) {
+    return data?.map?.(({ git_url, description, owner: { avatar_url, login } }) => {
+      return {
+        url: git_url,
+        description,
+        avatar: avatar_url,
+        account: login,
+      };
+    });
+  }
+
+  function generateTemplate(data) {
+    return data
+      ?.map?.(({ url, description, avatar, account }) => {
+        const linkContent = url.replace(/^git:\/\/|.git$/g, '');
+        const linkHref = `https://${linkContent}`;
+        return `
+        <li>
+          <h3>${account}</h3>
+          <img src="${avatar}" alt="" height="40" width="40" />
+          <a href="${linkHref}">${linkContent}</a>
+          <p>${description}</p>
+        </li>
+      `;
+      })
+      .join('');
+  }
+
+  function updateDOM(template) {
+    reposList.innerHTML = DOMPurify.sanitize(template);
+  }
+
+  function catchError(error) {
+    console.error(error.message);
+  }
+
+  function runFinally() {
+    alert('데이터 요청/응답 성공 또는 실패와 상관없이 항상 최종적으로 이 코드는 실행됩니다.');
+  }
 })();

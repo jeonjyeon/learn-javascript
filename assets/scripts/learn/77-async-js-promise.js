@@ -30,7 +30,9 @@
   // 메서드 체이닝
   promise
     // onFulfilled
-    .then((celebrateMessage) => console.log(celebrateMessage))
+    .then((celebrateMessage) => `${celebrateMessage} 👏👏👏👏👏👏`)
+    .then((newCelebrateMessage) => '2025년 7월! ' + newCelebrateMessage)
+    .then(console.log)
     // onRejected
     .catch((consolationMessage) => console.error(consolationMessage));
 
@@ -69,3 +71,8 @@
     return promise;
   }
 })();
+
+() => {
+  const promise = fetch('https://api.github.com/users/yamoo9/repos');
+  console.log(promise); // Promise {}
+};
