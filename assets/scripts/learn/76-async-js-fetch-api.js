@@ -102,7 +102,9 @@
       // 동적으로 마크업 코드(template) 생성
       const listTemplate = massagedData
         .map(({ url, description, avatar, account }) => {
-          const linkContent = url.replace('git://', '').replace('.git', '');
+          // const linkContent = url.replace('git://', '').replace('.git', '')
+          // 정규 표현식(Regular Expression, RegExp)
+          const linkContent = url.replace(/^git:\/\/|.git$/g, '');
           const linkHref = `https://${linkContent}`;
           return `
           <li>
