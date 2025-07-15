@@ -50,8 +50,8 @@
   }
 };
 
-// XMLHttpRequest (Old)
-(() => {
+// XMLHttpRequest (Legacy)
+() => {
   // 상품 생성
   // POST dummyjson.com/products/add
   createProduct(
@@ -83,4 +83,4 @@
     xhr.send(JSON.stringify(productInfo));
     xhr.addEventListener('load', responseCallback);
   }
-})();
+};

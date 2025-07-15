@@ -47,6 +47,50 @@
   <body>
     <h1 lang="en">JavaScript</h1>
 
+    <form method="POST" action="http://localhost:4000/submit">
+      <div>
+        <label for="name">이름</label>
+        <input type="text" name="name" id="name" value="yamoo9" />
+      </div>
+      <div>
+        <label for="email">이메일</label>
+        <input type="email" name="email" id="email" value="yamoo9@naver.com" />
+      </div>
+      <div>
+        <label for="password">패스워드</label>
+        <input type="password" name="password" id="password" value="qwerty" />
+      </div>
+      <button type="submit">보내기</button>
+    </form>
+    <script>
+      const form = document.querySelector('form');
+      // CORS: 다른 출처(사이트)에서 서버의 리소스 공유하는 것을 막는다.
+      // CORS 허용 (클라이언트 앱 -> API 서버)
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const form = e.currentTarget;
+        const url = form.action;
+        const method = form.method;
+        const [nameInput, emailInput, passwordInput] = form.elements;
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+        const requestBody = new URLSearchParams({ name, email, password }).toString();
+        // fetch()
+        fetch(url, {
+          method,
+          headers: {
+            'content-type': 'application/x-www-form-urlencoded',
+          },
+          body: requestBody,
+        })
+          .then((response) => response.json())
+          .then(console.log);
+
+        // XMLHttpRequest
+      });
+    </script>
+
     <main hidden>
       <form autocomplete="off" novalidate>
         <input type="search" name="search" aria-label="검색" />
