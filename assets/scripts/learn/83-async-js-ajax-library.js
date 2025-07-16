@@ -27,7 +27,7 @@
 };
 
 // axios.post(url[, data[, config]])
-(() => {
+() => {
   const API_ENDPOINT = 'https://dummyjson.com/products';
 
   const newProduct = {
@@ -57,5 +57,33 @@
       });
     })
     .then(console.log)
+    .catch(console.error);
+};
+
+// axios.put(url[, data[, config]])
+// axios.patch(url[, data[, config]])
+() => {
+  axios
+    .put('https://dummyjson.com/products/1', {
+      title: '아이폰 갤럭시 2027',
+      rating: 5,
+    })
+    .then(({ data }) => console.log(data))
+    .catch(console.error);
+
+  axios
+    .patch('https://dummyjson.com/products/1', {
+      title: '아이폰 갤럭시 2027',
+      rating: 5,
+    })
+    .then(({ data }) => console.log(data))
+    .catch(console.error);
+};
+
+// axios.delete(url[, config])
+(() => {
+  axios
+    .delete('https://dummyjson.com/products/1')
+    .then(({ data }) => console.log(data))
     .catch(console.error);
 })();
