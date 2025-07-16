@@ -39,82 +39,24 @@
         text-align: center;
       }
     </style>
-    <script defer src="./assets/scripts/learn/83-async-js-ajax-library.js"></script>
+    <script defer src="./assets/scripts/learn/84-async-js-file-upload.js"></script>
   </head>
   <!-- <body style="background-color: burlywood">
     <h1 lang="en" style="color: lightyellow">JavaScript</h1> -->
   <body>
     <h1 lang="en">JavaScript</h1>
 
-    <form method="POST" action="http://localhost:4000/submit">
+    <form data-id="upload-form">
       <div>
-        <label for="name">이름</label>
-        <input type="text" name="name" id="name" value="yamoo9" />
+        <label for="image">이미지</label>
+        <input type="file" name="image" id="image" accept="image/*" multiple />
       </div>
       <div>
-        <label for="email">이메일</label>
-        <input type="email" name="email" id="email" value="yamoo9@naver.com" />
+        <button type="submit">업로드</button>
       </div>
-      <div>
-        <label for="password">패스워드</label>
-        <input type="password" name="password" id="password" value="qwerty" />
-      </div>
-      <button type="submit">보내기</button>
     </form>
-    <script>
-      const form = document.querySelector('form');
-      // CORS: 다른 출처(사이트)에서 서버의 리소스 공유하는 것을 막는다.
-      // CORS 허용 (클라이언트 앱 -> API 서버)
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const form = e.currentTarget;
-        const url = form.action;
-        const method = form.method;
-        const [nameInput, emailInput, passwordInput] = form.elements;
-        const name = nameInput.value.trim();
-        const email = emailInput.value.trim();
-        const password = passwordInput.value.trim();
-        const requestBody = new URLSearchParams({ name, email, password }).toString();
-        // fetch()
-        fetch(url, {
-          method,
-          headers: {
-            'content-type': 'application/x-www-form-urlencoded',
-          },
-          body: requestBody,
-        })
-          .then((response) => response.json())
-          .then(console.log);
 
-        // XMLHttpRequest
-      });
-    </script>
-
-    <main hidden>
-      <form autocomplete="off" novalidate>
-        <input type="search" name="search" aria-label="검색" />
-        <select name="category" aria-label="카테고리">
-          <option value="">모든 상품</option>
-          <option value="hats">모자</option>
-          <option value="sneakers">신발</option>
-          <option value="jackets">자켓</option>
-          <option value="mens">남성 의류</option>
-          <option value="womens">여성 의류</option>
-        </select>
-        <button type="submit">검색</button>
-      </form>
-      <p>총 <span class="products-count">{000}</span>개의 상품을 찾았습니다.</p>
-      <div hidden role="status" style="color: #073037; font-weight: 700; font-size: 1.45rem">데이터 로딩 중입니다...</div>
-      <ul class="products" style="display: grid; grid-template-columns: repeat(4, 1fr)">
-        <li>{데이터 기반 리스트 렌더링}</li>
-      </ul>
-      <div role="alert" style="color: #db172b; font-weight: 700; font-size: 1.45rem" hidden>{오류 메시지 출력}</div>
-
-      <h2>GitHub 레포지터리</h2>
-      <ul class="repos-list">
-        <li>데이터를 로딩 중입니다...</li>
-      </ul>
-    </main>
+    <main hidden></main>
     <section>
       <h2 class="section-title">실습</h2>
       <ul class="practice-list">
