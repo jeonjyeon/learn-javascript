@@ -32,7 +32,7 @@ const API_ENDPOINT = 'https://jsonip.com';
 
     const script = document.createElement('script');
     script.setAttribute('src', `${url}/${fnName}`);
-    // script.src = `${url}/${fnName}`;
+    // script.src = `${url}/${fnName}`
 
     script.addEventListener('error', () => {
       console.error('문제가 발생했습니다. 나중에 다시 시도해주세요.');
@@ -130,11 +130,49 @@ const API_ENDPOINT = 'https://jsonip.com';
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
       ...config,
-    }).then((response) =>
-      response.json().then((responseData) => {
+    }).then((response) => {
+      const contentType = response.headers.get('content-type');
+      let methodName = 'text';
+
+      if (contentType.includes('application/json')) {
+        methodName = 'json';
+      }
+
+      if (contentType.includes('image/') || contentType.includes('application/octet-stream')) {
+        methodName = 'blob';
+      }
+
+      const resposeDataPromise = response[methodName]();
+
+      resposeDataPromise.then((responseData) => {
+        // 거절
         if (!response.ok) return Promise.reject(new Error(responseData.message));
+        // 이행
         return responseData;
-      })
-    );
+      });
+
+      return resposeDataPromise;
+    });
   }
+
+  const euid = {
+    get(url) {
+      return fetchByProxy(url);
+    },
+    post(url, data, config) {
+      return fetchByProxy(url, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        ...config,
+      });
+    },
+    put() {},
+    patch() {},
+    delete() {},
+  };
+
+  // 객체 동결(freezing)
+  Object.freeze(euid);
+
+  globalThis.euid = euid;
 })();
